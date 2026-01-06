@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>Fitness App</title>
+</head>
+<body style='background: #111; color: white; font-family: Arial;'>
+    <h1>Fitness App</h1>
+
+    <ul>
+        {% for treino in treinos %}
+            <li>
+                <a href="/treino/{{ treino.id }}">
+                    <strong>{{ treino.nome }}</strong>:
+                </a>
+                - {{ treino.grupo }} ({{ treino.duracao }})
+            <li>
+            {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ treino.nome }}</title>
+
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        /* ===== CARROSSEL ===== */
+        .carrossel {
+            display: flex;
+            width: 100%;
+            transition: transform 0.4s ease;
+        }
+
+        .card-exercicio {
+            min-width: 100%;
+            max-width: 100%;
+            margin: 0;
+        }
+
+        .card-exercicio.ativo {
+            opacity: 1;
+            transform: scale(1);
+            pointer-events: auto;
+        }
+
+        .card-exercicio h2 {
+            margin-bottom: 12px;
+        }
+
+        /* ===== BOTÕES ===== */
+        .acoes {
+            margin-top: 20px;
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .btn-descanso {
+            position: relative;
+            width: 220px;
+            height: 42px;
+            background: #111;
+            border: 1px solid #444;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .btn-descanso .progresso {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 0%;
+            background: #0f3d24;
+            transition: width 0.3s linear;
+            z-index: 1;
+        }
+
+        .btn-descanso .texto {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #fff;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .btn-concluir {
+            background: #111;
+            color: #fff;
+            border: 1px solid #555;
+            padding: 10px 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+<a href="/">← Voltar</a>
+<h1>{{ treino.nome }}</h1>
+
+<div class="carrossel">
+    {% for ex in treino.exercicios %}
+    <div class="card-exercicio">
+        <h2>{{ ex.nome }}</h2>
+        <p>{{ ex.descricao }}</p>
+
+        <p>{{ ex.series }} séries</p>
+        <p>{{ ex.reps }} repetições</p>
+
+        <div class="acoes">
+            <button class="btn-descanso" onclick="iniciarDescanso(this)">
+                <div class="progresso"></div>
+                <div class="texto">Iniciar descanso (45s)</div>
+            </button>
+
+            <button class="btn-concluir" onclick="concluirExercicioAtual()">
+                Concluir exercício
+            </button>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+<script>
+/* ===== ESTADO CENTRAL ===== */
+const treinoEstado = {
+    exercicioAtual: 0,
+    totalExercicios: 0
+};
+
+/* ===== RENDERIZAÇÃO ===== */
+function renderizarEstado() {
+    const cards = document.querySelectorAll('.card-exercicio');
+
+    cards.forEach((card, index) => {
+        card.classList.toggle('ativo', index === treinoEstado.exercicioAtual);
+    });
+
+    const offset = treinoEstado.exercicioAtual * -100;
+    document.querySelector('.carrossel').style.transform =
+        `translateX(${offset}%)`;
+}
+
+/* ===== CONCLUI EXERCÍCIO ===== */
+function concluirExercicioAtual() {
+    if (treinoEstado.exercicioAtual < treinoEstado.totalExercicios - 1) {
+        treinoEstado.exercicioAtual++;
+        renderizarEstado();
+    } else {
+        finalizarTreino();
+    }
+}
+
+/* ===== FINALIZA TREINO ===== */
+function finalizarTreino() {
+    alert('🎉 Parabéns, treino concluído!');
+    setTimeout(() => {
+        window.location.href = '/';
+    }, 300);
+}
+
+/* ===== TIMER DE DESCANSO ===== */
+let timerAtivo = null;
+
+function iniciarDescanso(botao) {
+    if (timerAtivo) return;
+
+    const texto = botao.querySelector('.texto');
+    const progresso = botao.querySelector('.progresso');
+
+    const tempoTotal = 45;
+    let tempo = tempoTotal;
+
+    botao.disabled = true;
+    progresso.style.width = '0%';
+    texto.textContent = `${tempo}s`;
+
+    timerAtivo = setInterval(() => {
+        tempo--;
+
+        const porcentagem = ((tempoTotal - tempo) / tempoTotal) * 100;
+        progresso.style.width = `${porcentagem}%`;
+        texto.textContent = `${tempo}s`;
+
+        if (tempo <= 0) {
+            clearInterval(timerAtivo);
+            timerAtivo = null;
+
+            progresso.style.width = '0%';
+            texto.textContent = 'Iniciar descanso (45s)';
+            botao.disabled = false;
+        }
+    }, 1000);
+}
+
+/* ===== INIT ===== */
+document.addEventListener('DOMContentLoaded', () => {
+    treinoEstado.totalExercicios =
+        document.querySelectorAll('.card-exercicio').length;
+    renderizarEstado();
+});
+</script>
+
+</body>
+</html>

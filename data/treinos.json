@@ -1,0 +1,90 @@
+[
+  {
+    "id": "treino_d",
+    "nome": "Treino D",
+    "grupo": "Superiores",
+    "duracao": "30-45 min",
+    "exercicios": [
+      {
+        "nome": "Rosca direta com elástico",
+        "descricao": "Prenda o elástico em um ponto fixo, segure as extremidades com as mãos e faça o movimento de rosca para trabalhar os bíceps.",
+        "series": "3",
+        "reps": "12-15"
+      },
+      {
+        "nome": "Tríceps francês com elástico",
+        "descricao": "Segure o elástico com ambas as mãos atrás da cabeça e estenda os braços para trabalhar os tríceps.",
+        "series": "3",
+        "reps": "12-15"
+      },
+      {
+        "nome": "Tríceps coice com elástico",
+        "descricao": "Prenda o elástico em um ponto fixo, segure a outra extremidade com uma mão e estenda o braço para trás para trabalhar os tríceps.",
+        "series": "3",
+        "reps": "12-15"
+      },
+      {
+        "nome": "Supino com elástico (no chão)",
+        "descricao": "Deite-se no chão e segure o elástico com ambas as mãos, estendendo os braços para cima e depois abaixando para trabalhar o peitoral.",
+        "series": "3",
+        "reps": "12-15"
+      },
+      {
+        "nome": "Crucifixo com elástico (2 seg)",
+        "descricao": "Deite-se no chão segurando o elástico com ambas as mãos, abra os braços lateralmente e depois junte-os novamente para trabalhar o peitoral.",
+        "series": "3",
+        "reps": "12-15"
+      },
+      {
+        "nome": "Flexão com elástico nas costas",
+        "descricao": "Faça uma flexão com o elástico preso nas costas, mantendo o tronco reto e os braços estendidos.",
+        "series": "3",
+        "reps": "12-15"
+      }
+    ]
+  },
+  {
+    "id": "treino_e",
+    "nome": "Treino E",
+    "grupo": "Inferiores",
+    "duracao": "30-45 min",
+    "exercicios": [
+      {
+        "nome": "Abdução de quadril com mini band",
+        "descricao": "Fique em pé com o mini band acima do joelho, abra as pernas lateralmente contra a resistência do elástico.",
+        "series": "3",
+        "reps": "15-20"
+      },
+      {
+        "nome": "Agachamento com elástico longo",
+        "descricao": "Fique em pé com o elástico longo sob os pés e realize o movimento de agachamento.",
+        "series": "3",
+        "reps": "12-15 por perna"
+      },
+      {
+        "nome": "Agachamento sumô com mini band acima do joelho",
+        "descricao": "Realize o agachamento sumô com o mini band acima do joelho.",
+        "series": "3",
+        "reps": "15-20"
+      },
+      {
+        "nome": "Elevação pélvica com mini band",
+        "descricao": "Realize a elevação pélvica com o mini band para trabalhar glúteos.",
+        "series": "3",
+        "reps": "15-20"
+      },
+      {
+        "nome": "Passada para trás com elástico",
+        "descricao": "Execute a passada para trás com o elástico para trabalhar glúteos e pernas.",
+        "series": "3",
+        "reps": "12-15"
+      },
+      {
+        "nome": "Kickback (chute para trás) com elástico",
+        "descricao": "Realize o chute para trás com o elástico para trabalhar os glúteos.",
+        "series": "3",
+        "reps": "12-15"
+      }
+    ]
+  }
+]
