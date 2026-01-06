@@ -1,0 +1,153 @@
+body {
+    margin: 0;
+    background: #000;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden;
+}
+
+.voltar {
+    padding: 16px;
+    display: inline-block;
+    color: #fff;
+}
+
+/* ===== LAYOUT ===== */
+.treino-page {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    padding: 32px 16px;
+}
+
+.treino-container {
+    width: 100%;
+    max-width: 520px;
+}
+
+.viewport {
+    width: 100%;
+    max-width: 520px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.carrossel {
+    display: flex;
+    width: 100%;
+    transition: transform 0.4s ease;
+}
+
+/* ===== CARD EXERCÍCIO ==== */
+.card-exercicio {
+    flex: 0 0 100%;
+    width: 100%;
+    box-sizing: border-box;
+
+    background: #0b0b0b;
+    border: 1px solid #0f3d24;
+    border-radius: 20px;
+
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+
+    /* 🔥 espaçamento vertical correto */
+    gap: 20px;
+
+    box-shadow: 0 12px 30px rgba(0,0,0,0.7);
+}
+
+/* ===== TEXTO ===== */
+.nome-exercicio {
+    text-align: center;
+    margin-bottom: 4px;
+}
+
+.metricas {
+    text-align: center;
+    opacity: 0.85;
+}
+
+/* ===== IMAGEM ===== */
+.imagem-exercicio {
+    max-width: 100%;
+    border-radius: 12px;
+    margin: 0 auto;
+    display: block;
+}
+
+/* ===== DESCRIÇÃO ===== */
+.descricao {
+    background: #111;
+    padding: 16px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+/* ===== CARGA ===== */
+.progressao-carga {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+}
+
+.progressao-carga button {
+    width: 40px;
+    height: 40px;
+    background: #111;
+    border: 1px solid #444;
+    color: #fff;
+    border-radius: 8px;
+}
+
+/* ===== AÇÕES ===== */
+.acoes {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.btn-descanso {
+    position: relative;
+    width: 220px;
+    height: 42px;
+    background: #111;
+    border: 1px solid #444;
+    overflow: hidden;
+}
+
+.btn-descanso .progresso {
+    position: absolute;
+    inset: 0;
+    width: 0%;
+    background: #0f3d24;
+    z-index: 1;
+}
+
+.btn-descanso .texto {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #fff;
+    z-index: 2;
+}
+
+.btn-concluir {
+    background: #111;
+    border: 1px solid #444;
+    color: #fff;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+/* 🔒 ESTADO BLOQUEADO */
+.btn-concluir.bloqueado {
+    opacity: 0.4;
+    pointer-events: none;
+}

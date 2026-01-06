@@ -2,20 +2,163 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <title>Fitness App</title>
-</head>
-<body style="background:#111; color:#fff; font-family:Arial, sans-serif;">
-    <h1>Fitness App</h1>
+    <title>COREON</title>
 
-    <ul>
-        {% for treino in treinos %}
-            <li>
-                <a href="/treino/{{ treino.id }}">
-                    <strong>{{ treino.nome }}</strong>
-                </a>
-                — {{ treino.grupo }} ({{ treino.duracao }})
-            </li>
-        {% endfor %}
-    </ul>
+    <style>
+        body {
+            margin: 0;
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            padding: 24px;
+            text-align: center;
+            border-bottom: 1px solid #0f3d24;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2rem;
+            letter-spacing: 2px;
+            color: #0f3d24;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 32px 16px;
+        }
+
+        .grupo {
+            margin-bottom: 48px;
+        }
+
+        .grupo h2 {
+            margin-bottom: 16px;
+            font-size: 1.4rem;
+            border-left: 4px solid #0f3d24;
+            padding-left: 12px;
+        }
+
+            .cards {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                gap: 24px;
+            }
+
+        /* CARD TREINO */
+        .card-treino {
+            display: flex;
+            align-items: center;
+            height: 230px;
+            background: #0b0b0b;
+            border: 1px solid #222;
+            border-radius: 16pxpx;
+            overflow: hidden;
+            text-decoration: none;
+            color: inherit;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .card-treino:hover {
+            transform: translateY(-4px);
+            border-color: #0f3d24;
+        }
+
+        .card-imagem {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #000;
+        }
+
+        .card-imagem img {
+            max-height: 280px;
+            width: auto;
+        }
+
+        .card-info {
+            width: 120px;
+            height: 100%;
+            background: #2b2b2b;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .card-info .titulo {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #fff;
+            text-align: center;
+        }
+
+        .card-info .tempo {
+            font-size: 0.85rem;
+            color: #bdbdbd;
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <h1>COREON</h1>
+</header>
+
+<main>
+
+    <!-- TREINO SUPERIOR -->
+    <section class="grupo">
+        <h2>Treino Superior</h2>
+        <div class="cards">
+            {% for treino in treinos if treino.grupo == "Superior" %}
+            <a href="/treino/{{ treino.id }}" class="card-treino">
+                <div class="card-imagem">
+                    <img
+                        src="{{ url_for('static', filename='imagens/silhuetas/' ~ treino.imagem) }}"
+                        alt="{{ treino.nome }}"
+                    >
+                </div>
+
+                <div class="card-info">
+                    <span class="titulo">{{ treino.nome }}</span>
+                    <span class="tempo">{{ treino.duracao }}</span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- TREINO INFERIOR -->
+    <section class="grupo">
+        <h2>Treino Inferior</h2>
+        <div class="cards">
+            {% for treino in treinos if treino.grupo == "Inferior" %}
+            <a href="/treino/{{ treino.id }}" class="card-treino">
+                <div class="card-imagem">
+                    <img
+                        src="{{ url_for('static', filename='imagens/silhuetas/' ~ treino.imagem) }}"
+                        alt="{{ treino.nome }}"
+                    >
+                </div>
+
+                <div class="card-info">
+                    <span class="titulo">{{ treino.nome }}</span>
+                    <span class="tempo">{{ treino.duracao }}</span>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </section>
+
+</main>
+
 </body>
 </html>

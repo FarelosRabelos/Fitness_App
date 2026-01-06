@@ -3,436 +3,72 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ treino.nome }}</title>
-
-    <style>
-        body {
-            background: #000;
-            color: #fff;
-            font-family: Arial, sans-serif;
-            overflow-x: hidden;
-        }
-
-        a {
-            color: #fff;
-            text-decoration: none;
-        }
-
-        /* ===== CARROSSEL ===== */
-        .carrossel {
-            display: flex;
-            width: 100%;
-            transition: transform 0.4s ease;
-        }
-
-        .card-exercicio {
-            min-width: 100%;
-            box-sizing: border-box; /* ESSENCIAL */
-            
-            background: #0b0b0b;
-            border: 1px solid #0f3d24;
-            border-radius: 16px;
-
-            padding: 24px;
-            margin: 0;              /* NÃO pode ter margem lateral */
-
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-
-            box-shadow: 0 12px 30px rgba(0,0,0,0.7);
-        }
-
-        .viewport {
-            width: 100%;
-            max-width: 900px;
-            margin: 0 auto;
-            overflow: hidden;
-        }
-
-
-        .nome-exercicio {
-            margin-bottom: 8px;
-            texto-align: center;
-        }
-
-        .metricas {
-            font-weight: bold;
-            margin-bottom: 16px;
-            opacity: 0.9;
-        }
-
-        .descricao {
-            margin-top: 20px;
-            padding: 16px;
-            text-align: center;
-            background: #111;
-            border-radius: 8px;
-            line-height: 1.5;
-            font-size: 0.95rem;
-            color: #ddd;
-        }
-
-        .card-exercicio.ativo {
-            opacity: 1;
-            border-color: #0f3d24;
-            pointer-events: auto;
-        }
-
-        .card-exercicio h2 {
-            margin-bottom: 12px;
-        }
-
-        /* ===== BOTÕES ===== */
-        .acoes {
-            margin-top: 20px;
-            display: flex;
-            gap: 24px;
-            align-items: center;
-        }
-
-        .btn-descanso {
-            position: relative;
-            width: 220px;
-            height: 42px;
-            background: #111;
-            border: 1px solid #444;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .btn-descanso .progresso {
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 100%;
-            width: 0%;
-            background: #0f3d24;
-            transition: width 0.3s linear;
-            z-index: 1;
-        }
-
-        .btn-descanso .texto {
-            position: absolute;
-            inset: 0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #fff;
-            z-index: 2;
-            pointer-events: none;
-        }
-
-        .btn-concluir {
-            background: #111;
-            color: #fff;
-            border: 1px solid #555;
-            padding: 10px 16px;
-            cursor: pointer;
-        }
-
-        .progressao-carga {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 16px 0;
-        }
-
-        .progressao-carga {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 16px;
-            margin: 24px 0;
-        }
-
-        .progressao-carga button {
-            width: 40px;
-            height: 40px;
-            border-radius: 8px;
-        }
-
-        .progressao-carga .valor-carga {
-            min-width: 80px;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1.1rem;
-            color: #fff;
-        }
-
-    </style>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/treino.css') }}">
 </head>
 
 <body>
 
-<a href="/">← Voltar</a>
-<h1>{{ treino.nome }}</h1>
+<a href="/" class="voltar">← Voltar</a>
 
-<div id="progresso-treino" style="margin-bottom:16px; opacity:0.8;">
-    Exercício 1 de {{ treino.exercicios | length }}
-</div>
+<main class="treino-page">
+    <div class="treino-container">
 
-<div class="viewport">
-  <div class="carrossel">
-    {% for ex in treino.exercicios %}
-    <div class="card-exercicio" data-ex-id="{{ loop.index }}">
+        <h1>{{ treino.nome }}</h1>
 
-        <h2 class="nome-exercicio">{{ ex.nome }}</h2>
-
-        <p class="metricas">
-            {{ ex.series }} séries | {{ ex.reps }} repetições
-        </p>
-
-        <div class="descricao">
-            {{ ex.descricao }}
+        <div id="progresso-treino">
+            Exercício <span id="indice-atual">1</span> de {{ treino.exercicios | length }}
         </div>
 
-        <div class="progressao-carga">
-            <button onclick="alterarCarga(-1)">−</button>
-            <span class="valor-carga">0 kg</span>
-            <button onclick="alterarCarga(1)">+</button>
-        </div>
+        <div class="viewport">
+            <div class="carrossel">
 
-        <div class="acoes">
-            <button class="btn-descanso" onclick="iniciarDescanso(this)">
-                <div class="progresso"></div>
-                <div class="texto">Iniciar descanso (45s)</div>
-            </button>
+                {% for ex in treino.exercicios %}
+                <div class="card-exercicio" data-ex-id="{{ loop.index }}">
 
-            <button class="btn-concluir" onclick="concluirExercicioAtual()">
-                Concluir exercício
-            </button>
+                    <h2 class="nome-exercicio">{{ ex.nome }}</h2>
+
+                    <p class="metricas">
+                        {{ ex.series }} séries | {{ ex.reps }} repetições
+                    </p>
+
+                    {% if ex.imagem %}
+                    <img
+                        src="{{ url_for('static', filename='imagens/exercicios/' ~ ex.imagem) }}"
+                        class="imagem-exercicio"
+                        alt="{{ ex.nome }}"
+                    >
+                    {% endif %}
+
+                    <div class="descricao">
+                        {{ ex.descricao }}
+                    </div>
+
+                    <div class="progressao-carga">
+                        <button onclick="alterarCarga(-1)">−</button>
+                        <span class="valor-carga">0 kg</span>
+                        <button onclick="alterarCarga(1)">+</button>
+                    </div>
+
+                    <div class="acoes">
+                        <button class="btn-descanso" onclick="iniciarDescanso(this)">
+                            <div class="progresso"></div>
+                            <div class="texto">Iniciar descanso (45s)</div>
+                        </button>
+
+                        <button class="btn-concluir" onclick="concluirExercicio()">
+                            Concluir exercício
+                        </button>
+                    </div>
+
+                </div>
+                {% endfor %}
+
+            </div>
         </div>
 
     </div>
-    {% endfor %}
-  </div>
-</div>
- 
-<script>
-/* =========================
-   IDENTIDADE DO TREINO
-========================= */
-const TREINO_ID = "{{ treino.nome }}".replace(/\s+/g, '_').toLowerCase();
+</main>
 
-/* =========================
-   ESTADO CENTRAL
-========================= */
-const treinoEstado = {
-    exercicioAtual: 0,
-    totalExercicios: 0
-};
-
-const PROGRESSO_KEY = `fitness_progresso_${TREINO_ID}`;
-
-/* =========================
-   RESTAURA PROGRESSO
-========================= */
-const salvo = localStorage.getItem(PROGRESSO_KEY);
-if (salvo) {
-    const dados = JSON.parse(salvo);
-    treinoEstado.exercicioAtual = dados.exercicioAtual || 0;
-}
-
-/* =========================
-   RENDERIZAÇÃO DO CARROSSEL
-========================= */
-function renderizarEstado() {
-    const cards = document.querySelectorAll('.card-exercicio');
-    const carrossel = document.querySelector('.carrossel');
-
-    cards.forEach((card, index) => {
-        card.classList.toggle('ativo', index === treinoEstado.exercicioAtual);
-    });
-
-    const cardAtivo = cards[treinoEstado.exercicioAtual];
-    if (cardAtivo) {
-        const offset = cardAtivo.offsetLeft;
-        carrossel.style.transform = `translateX(-${offset}px)`;
-    }
-
-    atualizarIndicador();
-    atualizarCargaUI();
-
-    // salva progresso do treino
-    localStorage.setItem(
-        PROGRESSO_KEY,
-        JSON.stringify({ exercicioAtual: treinoEstado.exercicioAtual })
-    );
-
-    // ajusta texto do botão concluir
-    const card = obterCardAtivo();
-    if (card) {
-        const btn = card.querySelector('.btn-concluir');
-        if (!btn) return;
-
-        btn.textContent =
-            treinoEstado.exercicioAtual === treinoEstado.totalExercicios - 1
-                ? 'Finalizar treino'
-                : 'Concluir exercício';
-    }
-}
-
-/* =========================
-   INDICADOR DE PROGRESSO
-========================= */
-function atualizarIndicador() {
-    const indicador = document.getElementById('progresso-treino');
-    if (!indicador) return;
-
-    indicador.textContent =
-        `Exercício ${treinoEstado.exercicioAtual + 1} de ${treinoEstado.totalExercicios}`;
-}
-
-/* =========================
-   CONCLUSÃO DE EXERCÍCIO
-========================= */
-function concluirExercicioAtual() {
-    if (treinoEstado.exercicioAtual < treinoEstado.totalExercicios - 1) {
-        treinoEstado.exercicioAtual++;
-        renderizarEstado();
-    } else {
-        finalizarTreino();
-    }
-}
-
-/* =========================
-   FINALIZA TREINO
-========================= */
-function finalizarTreino() {
-    localStorage.removeItem(PROGRESSO_KEY);
-    alert('🎉 Parabéns, treino concluído!');
-    window.location.href = '/';
-}
-
-/* =========================
-   TIMER DE DESCANSO
-========================= */
-let timerAtivo = null;
-
-function iniciarDescanso(botao) {
-    if (timerAtivo) return;
-
-    const card = botao.closest('.card-exercicio');
-    const btnConcluir = card.querySelector('.btn-concluir');
-    btnConcluir.disabled = true;
-    btnConcluir.style.opacity = '0.5';
-
-    const texto = botao.querySelector('.texto');
-    const progresso = botao.querySelector('.progresso');
-
-    let tempo = 45;
-    botao.disabled = true;
-    texto.textContent = `${tempo}s`;
-    progresso.style.width = '0%';
-
-    timerAtivo = setInterval(() => {
-        tempo--;
-        progresso.style.width = `${((45 - tempo) / 45) * 100}%`;
-        texto.textContent = `${tempo}s`;
-
-        if (tempo <= 0) {
-            clearInterval(timerAtivo);
-            timerAtivo = null;
-
-            btnConcluir.disabled = false;
-            btnConcluir.style.opacity = '1';
-
-            texto.textContent = 'Iniciar descanso (45s)';
-            progresso.style.width = '0%';
-            botao.disabled = false;
-        }
-    }, 1000);
-}
-
-/* =========================
-   PROGRESSÃO DE CARGA
-========================= */
-function obterCardAtivo() {
-    return document.querySelector('.card-exercicio.ativo');
-}
-
-function obterIdExercicio() {
-    const card = obterCardAtivo();
-    if (!card) return null;
-
-    const exId = card.dataset.exId;
-    return `${TREINO_ID}_ex_${exId}`;
-}
-
-function carregarCarga() {
-    const id = obterIdExercicio();
-    if (!id) return 0;
-
-    const salvo = localStorage.getItem(`carga_${id}`);
-    return salvo ? parseInt(salvo, 10) : 0;
-}
-
-function salvarCarga(valor) {
-    const id = obterIdExercicio();
-    if (!id) return;
-
-    localStorage.setItem(`carga_${id}`, valor);
-}
-
-function atualizarCargaUI() {
-    const card = obterCardAtivo();
-    if (!card) return;
-
-    const span = card.querySelector('.valor-carga');
-    if (!span) return;
-
-    span.textContent = `${carregarCarga()} kg`;
-}
-
-function alterarCarga(delta) {
-    let carga = carregarCarga();
-    carga = Math.max(0, carga + delta);
-
-    salvarCarga(carga);
-    atualizarCargaUI();
-}
-
-/* =========================
-   INIT
-========================= */
-document.addEventListener('DOMContentLoaded', () => {
-    treinoEstado.totalExercicios =
-        document.querySelectorAll('.card-exercicio').length;
-
-    renderizarEstado();
-});
-
-/* =========================
-   SWIPE MOBILE
-========================= */
-let touchStartX = 0;
-let touchEndX = 0;
-
-const carrosselEl = document.querySelector('.carrossel');
-
-carrosselEl.addEventListener('touchstart', e => {
-    touchStartX = e.changedTouches[0].screenX;
-});
-
-carrosselEl.addEventListener('touchend', e => {
-    touchEndX = e.changedTouches[0].screenX;
-    handleSwipe();
-});
-
-function handleSwipe() {
-    const distancia = touchStartX - touchEndX;
-    if (Math.abs(distancia) < 50) return;
-
-    if (distancia > 0 && treinoEstado.exercicioAtual < treinoEstado.totalExercicios - 1) {
-        concluirExercicioAtual();
-    } else if (distancia < 0 && treinoEstado.exercicioAtual > 0) {
-        treinoEstado.exercicioAtual--;
-        renderizarEstado();
-    }
-}
-
-</script>
-
+<script src="{{ url_for('static', filename='js/treino.js') }}"></script>
 </body>
 </html>
