@@ -32,4 +32,4 @@ def treino(id_treino):
         return "Treino não encontrado", 404
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, # Executa o aplicativo Flask em modo de depuração
+    app.run(host="0.0.0.0", port=5000) # Executa o aplicativo Flask na porta 5000
