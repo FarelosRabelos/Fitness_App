@@ -1,12 +1,20 @@
+/* =========================
+   SELETORES
+========================= */
 const cards = document.querySelectorAll('.card-exercicio');
 const carrossel = document.querySelector('.carrossel');
 const indicador = document.getElementById('indice-atual');
 
+/* =========================
+   ESTADO
+========================= */
 let exercicioAtual = 0;
 let descansoAtivo = false;
 let timer = null;
 
-/* ===== RENDER ===== */
+/* =========================
+   RENDER
+========================= */
 function render() {
     carrossel.style.transform = `translateX(-${exercicioAtual * 100}%)`;
     indicador.textContent = exercicioAtual + 1;
@@ -20,7 +28,9 @@ function render() {
     atualizarCarga();
 }
 
-/* ===== CONCLUIR ===== */
+/* =========================
+   CONCLUIR EXERCÍCIO / TREINO
+========================= */
 function concluirExercicio() {
     if (descansoAtivo) return;
 
@@ -29,22 +39,38 @@ function concluirExercicio() {
         render();
     } else {
         alert('🎉 Treino finalizado!');
-        window.location.href = '/';
+        concluirTreinoHoje(); // 🔥 MARCA O DIA COMO FEITO
     }
 }
 
-/* ===== DESCANSO ===== */
+/* =========================
+   MARCAR TREINO DO DIA
+========================= */
+function concluirTreinoHoje() {
+    const hoje = new Date().getDay(); // 0 = domingo
+    const indiceHoje = hoje === 0 ? 6 : hoje - 1;
+
+    localStorage.setItem('treino-' + indiceHoje, 'feito');
+
+    // Redireciona para a home
+    window.location.href = '/';
+}
+
+/* =========================
+   DESCANSO
+========================= */
 function iniciarDescanso(botao) {
     if (timer) return;
 
     descansoAtivo = true;
+
     const btnConcluir = cards[exercicioAtual].querySelector('.btn-concluir');
     btnConcluir.classList.add('bloqueado');
 
     const texto = botao.querySelector('.texto');
     const progresso = botao.querySelector('.progresso');
-    let tempo = 45;
 
+    let tempo = 45;
     texto.textContent = `${tempo}s`;
 
     timer = setInterval(() => {
@@ -56,6 +82,7 @@ function iniciarDescanso(botao) {
             clearInterval(timer);
             timer = null;
             descansoAtivo = false;
+
             progresso.style.width = '0%';
             texto.textContent = 'Iniciar descanso (45s)';
             btnConcluir.classList.remove('bloqueado');
@@ -63,7 +90,9 @@ function iniciarDescanso(botao) {
     }, 1000);
 }
 
-/* ===== CARGA ===== */
+/* =========================
+   CARGA
+========================= */
 function chaveCarga() {
     return `carga_ex_${cards[exercicioAtual].dataset.exId}`;
 }
@@ -74,11 +103,13 @@ function atualizarCarga() {
 }
 
 function alterarCarga(delta) {
-    let v = parseInt(localStorage.getItem(chaveCarga()) || 0);
-    v = Math.max(0, v + delta);
-    localStorage.setItem(chaveCarga(), v);
+    let valor = parseInt(localStorage.getItem(chaveCarga()) || 0);
+    valor = Math.max(0, valor + delta);
+    localStorage.setItem(chaveCarga(), valor);
     atualizarCarga();
 }
 
-/* ===== INIT ===== */
+/* =========================
+   INIT
+========================= */
 window.addEventListener('load', render);
