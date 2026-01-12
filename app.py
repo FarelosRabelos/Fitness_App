@@ -1,35 +1,125 @@
-import os # Importa o módulo os para manipulação de caminhos de arquivos
-import json #Importa o módulo json para manipulação de arquivos JSON
-from flask import Flask, render_template # Isso import a o Flask e a função render_template
+import os
+import json
+from flask import Flask, render_template
 
-app = Flask(__name__) 
+app = Flask(__name__)
 
+# =========================
+# PATHS
+# =========================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, 'data')
+
+EXERCICIOS_PATH = os.path.join(DATA_DIR, 'catalogo.json')
 TREINOS_PATH = os.path.join(DATA_DIR, 'treinos.json')
 
-@app.route('/') # Define a rota para a página inicial
-def home(): #função que renderiza a página inicial
-    with open(TREINOS_PATH, encoding='utf-8') as arquivo: # Abre o arquivo JSON com os dados dos treinos
-        treinos = json.load(arquivo) # Carrega os dados do arquivo JSON
-    
-    return render_template('index.html', treinos=treinos) # Renderiza o template index.html passando os dados dos treinos
+# =========================
+# LOADERS
+# =========================
+def carregar_treinos():
+    with open(TREINOS_PATH, encoding='utf-8') as arquivo:
+        return json.load(arquivo)
+
+
+def carregar_exercicios():
+    with open(EXERCICIOS_PATH, encoding='utf-8') as arquivo:
+        return json.load(arquivo)
+
+
+def buscar_variacao(catalogo, variacao_id):
+    for exercicio in catalogo["exercicios"]:
+        for variacao in exercicio["variacoes"]:
+            if variacao["id"] == variacao_id:
+                return {
+                    "id": variacao["id"],
+                    "nome": variacao["nome"],
+                    "descricao": variacao["descricao"],
+                    "imagem": variacao.get("imagem"),
+                    "tipo_carga": variacao.get("tipo_carga"),
+                    "metrica_execucao": exercicio["metrica_execucao"]
+                }
+    return None
+
+
+# =========================
+# ROTAS
+# =========================
+@app.route('/')
+def home():
+    treinos = carregar_treinos()
+    return render_template('index.html', treinos=treinos)
+
 
 @app.route('/treino/<id_treino>')
-def treino(id_treino):
-    with open(TREINOS_PATH, encoding='utf-8') as arquivo: # Abre o arquivo JSON com os dados dos treinos
-        treinos = json.load(arquivo) # Carrega os dados do arquivo JSON
+def treino_lista(id_treino):
+    treinos = carregar_treinos()
 
-    treino_selecionado = None
-    for treino in treinos:
-        if str(treino['id']) == id_treino:
-            treino_selecionado = treino
-            break
+    treino = next(
+        (t for t in treinos if str(t["id"]) == id_treino),
+        None
+    )
 
-    if treino_selecionado:
-        return render_template('treino.html', treino=treino_selecionado)
-    else:
+    if not treino:
         return "Treino não encontrado", 404
 
+    return render_template(
+        'treino_lista.html',
+        treino=treino
+    )
+
+
+@app.route('/treino/<id_treino>/executar')
+def treino_execucao(id_treino):
+    treinos = carregar_treinos()
+    catalogo = carregar_exercicios()
+
+    treino = next(
+        (t for t in treinos if str(t["id"]) == id_treino),
+        None
+    )
+
+    if not treino:
+        return "Treino não encontrado", 404
+
+    exercicios_execucao = []
+
+    for item in treino["exercicios"]:
+        variacao_id = item.get("variacao_id")
+        if not variacao_id:
+            continue
+
+        variacao = buscar_variacao(catalogo, variacao_id)
+        if not variacao:
+            continue
+
+        exercicio_final = {
+            "id": variacao["id"],
+            "nome": variacao["nome"],
+            "descricao": variacao["descricao"],
+            "imagem": variacao["imagem"],
+            "metrica_execucao": variacao["metrica_execucao"],
+            "series": item.get("series"),
+            "reps": item.get("reps"),
+            "tempo": item.get("tempo")
+        }
+
+        exercicios_execucao.append(exercicio_final)
+
+    treino_execucao_data = {
+        "id": treino["id"],
+        "nome": treino["nome"],
+        "exercicios": exercicios_execucao
+    }
+
+
+    return render_template(
+        "execucao.html",
+        treino=treino_execucao_data
+    )
+
+
+# =========================
+# RUN
+# =========================
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000) # Executa o aplicativo Flask na porta 5000
+    app.run(host="0.0.0.0", port=5000, debug=True)

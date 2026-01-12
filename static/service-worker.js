@@ -1,10 +1,10 @@
-const CACHE_NAME = "coreon-v2";
+const CACHE_NAME = "coreon-v3";
 
 const URLS = [
   "/",                       // home
-  "/treino",                 // tela de treino
+  "/execucao",                 // tela de treino
   "/static/manifest.json",
-  "/static/js/treino.js",
+  "/static/js/execucao.js",
   "/static/imagens/visual/logo.png",
   "/static/imagens/visual/icone-trans.png",
   "/static/imagens/silhuetas/superior.png",

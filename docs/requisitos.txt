@@ -1,0 +1,21 @@
+Requisitos para o APP de exercícios
+
+Principal
+-visuzalição de lista de treinos
+-verificar exercícios contido dentro do treino
+-Contagem de tempo de descanso
+
+Futuramente
+-Acrescentar novos exercícios
+-criar lista variadas de exercícios
+-página de perfil
+-escolher o tempo de intervalo do descanso
+-check de treino/excercício realizado
+
+Durante o desenvolvimento
+ExercicioController
+├── lista de exercícios
+├── índice atual
+├── avançar()
+├── voltar()   (opcional no futuro)
+├── concluir()

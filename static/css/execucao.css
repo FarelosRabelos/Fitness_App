@@ -1,0 +1,177 @@
+:root {
+    --bg-main: #0f1115;
+    --card-bg: #1d222a;
+    --primary: #2465fc;
+    --text-main: #ffffff;
+    --text-muted: #bdbdbd;
+    --border-soft: #2a2f38;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    background: var(--bg-main);
+    color: var(--text-main);
+    font-family: Arial, sans-serif;
+}
+
+.voltar {
+    display: inline-block;
+    padding: 16px;
+    color: #fff;
+    text-decoration: none;
+    opacity: 0.85;
+}
+
+/* ===== LAYOUT ===== */
+.execucao {
+    max-width: 520px;
+    margin: 0 auto;
+    padding: 8px 16px 32px;
+}
+
+/* ===== HEADER ===== */
+.execucao-header h1 {
+    margin: 0 0 12px;
+    font-size: 1.6rem;
+}
+
+.progresso-topo .barra {
+    height: 6px;
+    background: #2a2f38;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-bottom: 6px;
+}
+
+.barra-preenchida {
+    width: 16%;
+    height: 100%;
+    background: var(--primary);
+    border-radius: 6px;
+}
+
+.progresso-topo span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+/* ===== CARD ===== */
+.card-execucao {
+    background: var(--card-bg);
+    border-radius: 22px;
+    padding: 18px;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.nome-exercicio {
+    margin: 0;
+    font-size: 1.3rem;
+}
+
+/* ===== IMAGEM ===== */
+.imagem-exercicio img {
+    width: 100%;
+    border-radius: 16px;
+}
+
+/* ===== EXECUÇÃO ===== */
+.execucao-box {
+    background: #12151a;
+    padding: 14px;
+    border-radius: 14px;
+}
+
+.execucao-box h3 {
+    margin: 0 0 6px;
+    font-size: 1rem;
+}
+
+/* ===== SÉRIE ===== */
+.serie-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #12151a;
+    padding: 14px;
+    border-radius: 14px;
+}
+
+.serie-info span {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+}
+
+.carga {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.carga button {
+    width: 32px;
+    height: 32px;
+    background: #1d222a;
+    border: 1px solid var(--border-soft);
+    color: #fff;
+    border-radius: 8px;
+}
+
+/* ===== DESCANSO ===== */
+.btn-descanso {
+    position: relative;
+    width: 100%;
+    height: 44px;
+    background: #1d222a;
+    border-radius: 999px;
+    overflow: hidden;
+    border: 1px solid var(--border-soft);
+    cursor: pointer;
+}
+
+.btn-descanso .progresso {
+    position: absolute;
+    inset: 0;
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(to right, #2465fc, #3a7bfd);
+    z-index: 1;
+}
+
+.btn-descanso .texto {
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* ===== DICA ===== */
+.dica {
+    background: #12151a;
+    padding: 14px;
+    border-radius: 14px;
+    font-size: 0.85rem;
+    color: var(--text-muted);
+}
+
+/* ===== CONCLUIR ===== */
+.btn-concluir {
+    background: var(--primary);
+    border: none;
+    color: #fff;
+    padding: 14px;
+    border-radius: 999px;
+    font-weight: 600;
+    cursor: pointer;
+}

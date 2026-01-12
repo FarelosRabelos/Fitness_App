@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ treino.nome }} – COREON</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/treino_lista.css') }}">
+</head>
+
+<body>
+
+<a href="/" class="voltar">← Voltar</a>
+
+<main class="treino-lista">
+
+    <header class="cabecalho">
+        <h1>{{ treino.nome }}</h1>
+        <p class="descricao-treino">
+            {{ treino.descricao or "Prepare-se para o treino" }}
+        </p>
+    </header>
+
+    <section class="exercicios">
+        <h2>Exercícios</h2>
+
+        <ul class="lista-exercicios">
+            {% for ex in treino.exercicios %}
+            <li class="item-exercicio">
+                <img
+                    src="{{ url_for('static', filename='imagens/exercicios/' ~ ex.imagem) }}"
+                    alt="{{ ex.nome }}"
+                >
+                <div class="info">
+                    <span class="nome">{{ ex.nome }}</span>
+                    <span class="metricas">
+                        {{ ex.series }}x {{ ex.reps or ex.tempo }}
+                    </span>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+
+    <div class="acao">
+        <a href="/treino/{{ treino.id }}/executar" class="btn-iniciar">
+            Iniciar treino
+        </a>
+    </div>
+
+</main>
+
+</body>
+</html>
