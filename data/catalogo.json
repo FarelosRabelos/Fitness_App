@@ -1,40 +1,27 @@
 {
-  "versao": "1.1",
+  "versao": "1.4",
   "exercicios": [
+
     {
       "id": "ex_supino",
       "nome": "Supino",
-      "grupo_muscular": ["peito", "triceps"],
-      "tipo": "forca",
       "metrica_execucao": "repeticoes",
       "variacoes": [
         {
           "id": "ex_supino__maquina_reto",
           "nome": "Supino reto na máquina",
           "descricao": "Empurre a carga à frente estendendo os braços.",
-          "equipamento": ["maquina"],
-          "ambiente": ["academia"],
           "tipo_carga": "kg",
-          "imagem": "ex_supino__maquina_reto.png"
+          "imagem": "supino_reto_maquina.png",
+          "video": "supino_reto_maquina.mp4"
         },
         {
           "id": "ex_supino__maquina_inclinado",
           "nome": "Supino inclinado na máquina",
           "descricao": "Empurre a carga para frente em banco inclinado.",
-          "equipamento": ["maquina"],
-          "ambiente": ["academia"],
           "tipo_carga": "kg",
-          "imagem": "ex_supino__maquina_inclinado.png"
-        },
-        {
-          "id": "ex_supino__elastico_chao",
-          "nome": "Supino com elástico no chão",
-          "descricao": "Deitado no chão, empurre o elástico para cima.",
-          "equipamento": ["elastico"],
-          "ambiente": ["casa"],
-          "tipo_carga": "elastico",
-          "niveis_elastico": ["leve", "medio", "forte"],
-          "imagem": "ex_supino__elastico_chao.png"
+          "imagem": "supino_inclinado_maquina.png",
+          "video": "supino_inclinado_maquina.mp4"
         }
       ]
     },
@@ -42,57 +29,15 @@
     {
       "id": "ex_crucifixo",
       "nome": "Crucifixo",
-      "grupo_muscular": ["peito"],
-      "tipo": "forca",
       "metrica_execucao": "repeticoes",
       "variacoes": [
         {
           "id": "ex_crucifixo__maquina",
           "nome": "Crucifixo na máquina",
           "descricao": "Abra e feche os braços de forma controlada.",
-          "equipamento": ["maquina"],
-          "ambiente": ["academia"],
           "tipo_carga": "kg",
-          "imagem": "ex_crucifixo__maquina.png"
-        },
-        {
-          "id": "ex_crucifixo__elastico",
-          "nome": "Crucifixo com elástico",
-          "descricao": "Abra e feche os braços contra a resistência do elástico.",
-          "equipamento": ["elastico"],
-          "ambiente": ["casa"],
-          "tipo_carga": "elastico",
-          "niveis_elastico": ["leve", "medio", "forte"],
-          "imagem": "ex_crucifixo__elastico.png"
-        }
-      ]
-    },
-
-    {
-      "id": "ex_flexao",
-      "nome": "Flexão de braço",
-      "grupo_muscular": ["peito", "triceps", "core"],
-      "tipo": "forca",
-      "metrica_execucao": "repeticoes",
-      "variacoes": [
-        {
-          "id": "ex_flexao__peso_corporal",
-          "nome": "Flexão tradicional",
-          "descricao": "Flexione os braços levando o peito ao chão e empurre para subir.",
-          "equipamento": ["peso_corporal"],
-          "ambiente": ["casa"],
-          "tipo_carga": "peso_corporal",
-          "imagem": "ex_flexao__peso_corporal.png"
-        },
-        {
-          "id": "ex_flexao__elastico_costas",
-          "nome": "Flexão com elástico nas costas",
-          "descricao": "Faça a flexão mantendo o elástico tensionado.",
-          "equipamento": ["elastico"],
-          "ambiente": ["casa"],
-          "tipo_carga": "elastico",
-          "niveis_elastico": ["leve", "medio", "forte"],
-          "imagem": "ex_flexao__elastico_costas.png"
+          "imagem": "crucifixo_maquina.png",
+          "video": "crucifixo_maquina.mp4"
         }
       ]
     },
@@ -100,18 +45,15 @@
     {
       "id": "ex_desenvolvimento_ombros",
       "nome": "Desenvolvimento de ombros",
-      "grupo_muscular": ["ombros"],
-      "tipo": "forca",
       "metrica_execucao": "repeticoes",
       "variacoes": [
         {
           "id": "ex_desenvolvimento_ombros__maquina",
           "nome": "Desenvolvimento na máquina",
           "descricao": "Empurre a carga para cima partindo da altura dos ombros.",
-          "equipamento": ["maquina"],
-          "ambiente": ["academia"],
           "tipo_carga": "kg",
-          "imagem": "ex_desenvolvimento_ombros__maquina.png"
+          "imagem": "desenvolvimento_ombros_maquina.png",
+          "video": "desenvolvimento_ombros_maquina.mp4"
         }
       ]
     },
@@ -119,37 +61,55 @@
     {
       "id": "ex_elevacao_lateral",
       "nome": "Elevação lateral",
-      "grupo_muscular": ["ombros"],
-      "tipo": "forca",
       "metrica_execucao": "repeticoes",
       "variacoes": [
         {
           "id": "ex_elevacao_lateral__halteres",
           "nome": "Elevação lateral com halteres",
           "descricao": "Eleve os braços lateralmente até a altura dos ombros.",
-          "equipamento": ["halter"],
-          "ambiente": ["academia", "casa"],
           "tipo_carga": "kg",
-          "imagem": "ex_elevacao_lateral__halteres.png"
+          "imagem": "elevacao_lateral_halteres.png",
+          "video": "elevacao_lateral_halteres.mp4"
         }
       ]
     },
 
     {
-      "id": "ex_face_pull",
-      "nome": "Face pull",
-      "grupo_muscular": ["ombros", "costas"],
-      "tipo": "forca",
+      "id": "ex_triceps",
+      "nome": "Tríceps",
       "metrica_execucao": "repeticoes",
       "variacoes": [
         {
-          "id": "ex_face_pull__polia",
-          "nome": "Face pull na polia",
-          "descricao": "Puxe a corda em direção ao rosto abrindo os cotovelos.",
-          "equipamento": ["polia"],
-          "ambiente": ["academia"],
+          "id": "ex_triceps_polia__barra",
+          "nome": "Tríceps na polia com barra",
+          "descricao": "Empurre a barra para baixo estendendo os cotovelos.",
           "tipo_carga": "kg",
-          "imagem": "ex_face_pull__polia.png"
+          "imagem": "triceps_polia_barra.png",
+          "video": "triceps_polia_barra.mp4"
+        }
+      ]
+    },
+
+    {
+      "id": "ex_abdominal",
+      "nome": "Abdômen",
+      "metrica_execucao": "repeticoes",
+      "variacoes": [
+        {
+          "id": "ex_abdominal_tradicional__solo",
+          "nome": "Abdominal tradicional",
+          "descricao": "Flexione o tronco contraindo o abdômen.",
+          "tipo_carga": "nenhum",
+          "imagem": "abdominal_tradicional.png",
+          "video": "abdominal_tradicional.mp4"
+        },
+        {
+          "id": "ex_abdominal_curto__solo",
+          "nome": "Abdominal curto",
+          "descricao": "Flexão curta focando no abdômen superior.",
+          "tipo_carga": "nenhum",
+          "imagem": "abdominal_curto.png",
+          "video": "abdominal_curto.mp4"
         }
       ]
     },
@@ -157,58 +117,18 @@
     {
       "id": "ex_prancha",
       "nome": "Prancha",
-      "grupo_muscular": ["core"],
-      "tipo": "forca",
       "metrica_execucao": "tempo",
       "variacoes": [
         {
           "id": "ex_prancha__estatica",
           "nome": "Prancha estática",
           "descricao": "Mantenha o corpo alinhado apoiado nos antebraços.",
-          "equipamento": ["peso_corporal"],
-          "ambiente": ["casa", "academia"],
           "tipo_carga": "nenhum",
-          "imagem": "ex_prancha__estatica.png"
-        }
-      ]
-    },
-
-    {
-      "id": "ex_burpee",
-      "nome": "Burpee",
-      "grupo_muscular": ["corpo_todo"],
-      "tipo": "hiit",
-      "metrica_execucao": "tempo",
-      "variacoes": [
-        {
-          "id": "ex_burpee__tradicional",
-          "nome": "Burpee tradicional",
-          "descricao": "Agache, leve os pés para trás, faça a flexão e salte.",
-          "equipamento": ["peso_corporal"],
-          "ambiente": ["casa", "academia"],
-          "tipo_carga": "nenhum",
-          "imagem": "ex_burpee__tradicional.png"
-        }
-      ]
-    },
-
-    {
-      "id": "ex_yoga_cachorro_baixo",
-      "nome": "Cachorro olhando para baixo",
-      "grupo_muscular": ["corpo_todo"],
-      "tipo": "yoga",
-      "metrica_execucao": "tempo",
-      "variacoes": [
-        {
-          "id": "ex_yoga_cachorro_baixo__tradicional",
-          "nome": "Cachorro olhando para baixo",
-          "descricao": "Eleve o quadril formando um V invertido.",
-          "equipamento": ["peso_corporal"],
-          "ambiente": ["casa", "academia"],
-          "tipo_carga": "nenhum",
-          "imagem": "ex_yoga_cachorro_baixo__tradicional.png"
+          "imagem": "prancha.png",
+          "video": "prancha.mp4"
         }
       ]
     }
+
   ]
 }

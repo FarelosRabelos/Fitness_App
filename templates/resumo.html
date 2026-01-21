@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Resumo – COREON</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/resumo.css') }}">
+</head>
+<body>
+
+<main class="resumo">
+  <h1>Treino concluído 💪</h1>
+
+  <div class="card">
+    <strong id="treino-nome"></strong>
+    <span id="treino-data"></span>
+
+    <div class="linha">
+      <span>Exercícios</span>
+      <span id="qtd-exercicios"></span>
+    </div>
+
+    <div class="linha">
+      <span>Duração</span>
+      <span id="duracao"></span>
+    </div>
+  </div>
+
+  <a href="/" class="btn">Voltar para a home</a>
+</main>
+
+<script src="{{ url_for('static', filename='js/resumo.js') }}"></script>
+</body>
+</html>

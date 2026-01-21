@@ -1,65 +1,93 @@
 [
   {
-    "id": "superior_a",
-    "nome": "Superior",
+    "id": "superior_empurrar",
+    "titulo": "Superior",
+    "subtitulo": "Empurrar",
     "grupo": "Superior",
     "duracao": "45 min",
-    "imagem": "superior.png",
+    "imagem": "superior_empurrar.png",
     "exercicios": [
-      {
-        "variacao_id": "ex_flexao__peso_corporal",
-        "series": 3,
-        "reps": "12-15"
-      },
-      {
-        "variacao_id": "ex_supino__elastico_chao",
-        "series": 3,
-        "reps": "12-15"
-      },
-      {
-        "variacao_id": "ex_crucifixo__elastico",
-        "series": 3,
-        "reps": "12-15"
-      },
-      {
-        "variacao_id": "ex_desenvolvimento_ombros__maquina",
-        "series": 3,
-        "reps": "10-12"
-      },
-      {
-        "variacao_id": "ex_elevacao_lateral__halteres",
-        "series": 3,
-        "reps": "12-15"
-      },
-      {
-        "variacao_id": "ex_face_pull__polia",
-        "series": 3,
-        "reps": "12-15"
-      }
+      { "variacao_id": "ex_supino__maquina_reto", "series": 4, "reps": "8-12" },
+      { "variacao_id": "ex_supino__maquina_inclinado", "series": 3, "reps": "8-12" },
+      { "variacao_id": "ex_desenvolvimento_ombros__maquina", "series": 3, "reps": "8-12" },
+      { "variacao_id": "ex_crucifixo__maquina", "series": 3, "reps": "10-12" },
+      { "variacao_id": "ex_elevacao_lateral__halteres", "series": 3, "reps": "12-15" },
+      { "variacao_id": "ex_triceps_polia__barra", "series": 3, "reps": "10-12" },
+      { "variacao_id": "ex_abdominal_tradicional__solo", "series": 3, "reps": "15" },
+      { "variacao_id": "ex_abdominal_curto__solo", "series": 3, "reps": "15" }
     ]
   },
+
   {
-    "id": "inferior_b",
-    "nome": "Inferior",
+    "id": "inferior_quadriceps",
+    "titulo": "Inferior",
+    "subtitulo": "Quadríceps",
     "grupo": "Inferior",
-    "duracao": "30-45 min",
-    "imagem": "inferior.png",
+    "duracao": "45 min",
+    "imagem": "inferior_quadriceps.png",
     "exercicios": [
-      {
-        "variacao_id": "ex_prancha__estatica",
-        "series": 3,
-        "tempo": "30-45s"
-      },
-      {
-        "variacao_id": "ex_burpee__tradicional",
-        "series": 3,
-        "tempo": "30s"
-      },
-      {
-        "variacao_id": "ex_yoga_cachorro_baixo__tradicional",
-        "series": 2,
-        "tempo": "40s"
-      }
+      { "variacao_id": "ex_agachamento_smith__maquina", "series": 4, "reps": "12-15" },
+      { "variacao_id": "ex_elevacao_pelvica__solo", "series": 3, "reps": "10" },
+      { "variacao_id": "ex_mesa_flexora__maquina", "series": 3, "reps": "10-12" },
+      { "variacao_id": "ex_adutora__maquina", "series": 4, "reps": "10-12" },
+      { "variacao_id": "ex_cadeira_extensora__maquina", "series": 4, "reps": "15-20" },
+      { "variacao_id": "ex_panturrilha_leg_press__maquina", "series": 4, "reps": "12-15" },
+      { "variacao_id": "ex_abdominal_infra__solo", "series": 3, "reps": "15-20" },
+      { "variacao_id": "ex_mountain_climb__solo", "series": 3, "tempo": "60s" }
+    ]
+  },
+
+  {
+    "id": "superior_puxar",
+    "titulo": "Superior",
+    "subtitulo": "Puxar",
+    "grupo": "Superior",
+    "duracao": "45 min",
+    "imagem": "superior_puxar.png",
+    "exercicios": [
+      { "variacao_id": "ex_puxada_frente__maquina", "series": 4, "reps": "8-12" },
+      { "variacao_id": "ex_remada_baixa__maquina", "series": 3, "reps": "10-12" },
+      { "variacao_id": "ex_remada_unilateral__halter", "series": 3, "reps": "10-12" },
+      { "variacao_id": "ex_face_pull__polia", "series": 3, "reps": "12-15" },
+      { "variacao_id": "ex_rosca_direta__halteres", "series": 3, "reps": "10-12" },
+      { "variacao_id": "ex_rosca_martelo__halteres", "series": 3, "reps": "10-12" },
+      { "variacao_id": "ex_abdominal_cruzado__solo", "series": 3, "reps": "15" },
+      { "variacao_id": "ex_abdominal_pinguim__solo", "series": 3, "reps": "20" }
+    ]
+  },
+
+  {
+    "id": "inferior_posterior",
+    "titulo": "Inferior",
+    "subtitulo": "Posterior e glúteos",
+    "grupo": "Inferior",
+    "duracao": "45 min",
+    "imagem": "inferior_posterior.png",
+    "exercicios": [
+      { "variacao_id": "ex_levantamento_terra__barra", "series": 4, "reps": "8-10" },
+      { "variacao_id": "ex_leg_press__maquina", "series": 4, "reps": "12-15" },
+      { "variacao_id": "ex_mesa_flexora__maquina", "series": 3, "reps": "10-12" },
+      { "variacao_id": "ex_abdutora__maquina", "series": 4, "reps": "10-12" },
+      { "variacao_id": "ex_cadeira_extensora__maquina", "series": 2, "reps": "15" },
+      { "variacao_id": "ex_panturrilha_leg_press__maquina", "series": 4, "reps": "12-15" },
+      { "variacao_id": "ex_prancha__estatica", "series": 3, "tempo": "45-60s" },
+      { "variacao_id": "ex_prancha_lateral__solo", "series": 3, "tempo": "30-45s" }
+    ]
+  },
+
+  {
+    "id": "abdomen_extra",
+    "titulo": "Abdômen",
+    "subtitulo": "Core completo",
+    "grupo": "Core",
+    "duracao": "20-30 min",
+    "imagem": "abdomen.png",
+    "exercicios": [
+      { "variacao_id": "ex_abdominal_tradicional__solo", "series": 3, "reps": "20" },
+      { "variacao_id": "ex_abdominal_infra__solo", "series": 3, "reps": "20" },
+      { "variacao_id": "ex_abdominal_cruzado__solo", "series": 3, "reps": "20" },
+      { "variacao_id": "ex_abdominal_pinguim__solo", "series": 3, "reps": "30" },
+      { "variacao_id": "ex_prancha__estatica", "series": 3, "tempo": "60s" }
     ]
   }
 ]

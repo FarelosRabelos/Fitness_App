@@ -1,98 +1,105 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>COREON</title>
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>COREON</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 </head>
 <body>
 
 <header class="app-header">
-    <div class="header-top">
-        <div class="header-left">
-            <img src="{{ url_for('static', filename='imagens/visual/logo.png') }}" class="logo">
-            <span class="logo-text">COREON</span>
-        </div>
-        <span class="icon-bell">🔔</span>
+  <div class="header-top">
+    <div class="header-left">
+      <img src="{{ url_for('static', filename='imagens/visual/logo.png') }}" class="logo">
+      <span class="logo-text">COREON</span>
     </div>
 
-    <div class="header-greeting">
-        <h2>Olá, Fabrício</h2>
-        <p>Hoje é um bom dia para treinar</p>
+    <div class="header-right">
+      <a href="/historico" class="link-historico">Histórico</a>
+      <span class="icon-bell">🔔</span>
     </div>
+  </div>
+
+  <div class="header-greeting">
+    <h2>Olá, Fabrício</h2>
+    <p>Hoje é um bom dia para treinar</p>
+  </div>
 </header>
 
-<section class="semana">
-    <div class="dias">
-        <div class="dia">S</div>
-        <div class="dia">T</div>
-        <div class="dia">Q</div>
-        <div class="dia">Q</div>
-        <div class="dia">S</div>
-        <div class="dia hoje">S</div>
-        <div class="dia">D</div>
+<main class="home">
+
+  <!-- DESTAQUE DINÂMICO (CONTROLADO PELO JS) -->
+  <section class="destaque">
+    <div class="destaque-bg"></div>
+
+    <div class="destaque-conteudo">
+      <div>
+        <h3 id="destaque-titulo">Superior</h3>
+        <span id="destaque-subtitulo">Empurrar · 45 min</span>
+      </div>
+
+      <a href="#" id="btn-destaque" class="btn-primario">
+        Iniciar treino
+      </a>
     </div>
-</section>
+  </section>
 
-<main>
+  <!-- LISTA DE TREINOS -->
+  <section class="lista-treinos">
+    <h4>Treinos</h4>
 
-    <!-- CARD DESTAQUE -->
-    <div class="card-destaque">
-        <div class="destaque-bg"></div>
+    <div class="grid-treinos">
 
-        <div class="barra-inferior">
-            <div class="destaque-texto">
-                <h3>Treino em casa</h3>
-                <span>Corpo inteiro · 30–40 min</span>
-            </div>
-
-            <a href="/treino/treino_em_casa/executar" class="btn-iniciar">
-                Iniciar treino
-            </a>
-        </div>
-    </div>
-
-
-    <!-- GRID SECUNDÁRIO -->
-    <div class="grid-secundario">
-
-        <div class="card-secundario">
-            <div class="texto">
-                <h4>Superior 1</h4>
-                <span>Bíceps</span>
-            </div>
-            <img src="{{ url_for('static', filename='imagens/treinos/biceps.png') }}">
+      <!-- SUPERIOR -->
+      {% for treino in treinos if treino.grupo == "Superior" %}
+      <a href="/treino/{{ treino.id }}" class="card-treino">
+        <div class="info">
+          <strong>{{ treino.titulo }}</strong>
+          <span>{{ treino.subtitulo }}</span>
         </div>
 
-        <div class="card-secundario">
-            <div class="texto">
-                <h4>Inferior 1</h4>
-                <span>Quadríceps</span>
-            </div>
-            <img src="{{ url_for('static', filename='imagens/treinos/quadriceps.png') }}">
+        {% if treino.subtitulo == "Puxar" %}
+          <img src="{{ url_for('static', filename='imagens/silhuetas/costas.png') }}" class="thumb">
+        {% else %}
+          <img src="{{ url_for('static', filename='imagens/silhuetas/superiores.png') }}" class="thumb">
+        {% endif %}
+      </a>
+      {% endfor %}
+
+      <!-- INFERIOR -->
+      {% for treino in treinos if treino.grupo == "Inferior" %}
+      <a href="/treino/{{ treino.id }}" class="card-treino">
+        <div class="info">
+          <strong>{{ treino.titulo }}</strong>
+          <span>{{ treino.subtitulo }}</span>
         </div>
 
-        <div class="card-secundario">
-            <div class="texto">
-                <h4>Superior 2</h4>
-                <span>Costas</span>
-            </div>
-            <img src="{{ url_for('static', filename='imagens/treinos/costas.png') }}">
-        </div>
-
-        <div class="card-secundario">
-            <div class="texto">
-                <h4>Inferior 2</h4>
-                <span>Glúteos</span>
-            </div>
-            <img src="{{ url_for('static', filename='imagens/treinos/gluteo.png') }}">
-        </div>
+        {% if treino.subtitulo == "Quadríceps" %}
+          <img src="{{ url_for('static', filename='imagens/silhuetas/pernas.png') }}" class="thumb">
+        {% else %}
+          <img src="{{ url_for('static', filename='imagens/silhuetas/inferiores.png') }}" class="thumb">
+        {% endif %}
+      </a>
+      {% endfor %}
 
     </div>
+
+    <!-- ABDÔMEN (CARD LONGO) -->
+    <a href="/treino/abdomen" class="card-treino card-longo">
+      <div class="info">
+        <strong>Abdômen</strong>
+        <span>Core completo</span>
+      </div>
+
+      <img src="{{ url_for('static', filename='imagens/silhuetas/abd.png') }}" class="thumb">
+    </a>
+  </section>
 
 </main>
+
+<!-- JS SEMPRE NO FINAL -->
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
 
 </body>
 </html>

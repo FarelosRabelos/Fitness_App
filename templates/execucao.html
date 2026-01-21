@@ -1,93 +1,53 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ treino.nome }} – COREON</title>
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/execucao.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ exercicio.nome }} – COREON</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/execucao.css') }}">
 </head>
 <body>
 
-<a href="/" class="voltar">← Voltar</a>
+<div class="execucao">
 
-<main class="execucao">
+  <!-- HEADER -->
+  <header class="execucao-header">
+    <h1>{{ treino.titulo }}</h1>
+    <span>Exercício {{ indice }} de {{ total }}</span>
+  </header>
 
-    {% set ex = treino.exercicios[0] %}
+  <!-- VÍDEO / IMAGEM -->
+  <div class="video-wrapper">
+    {% if exercicio.video %}
+      <video autoplay loop muted playsinline>
+        <source src="{{ url_for('static', filename='videos/' ~ exercicio.video) }}">
+      </video>
+    {% else %}
+      <img src="{{ url_for('static', filename='imagens/exercicios/' ~ exercicio.imagem) }}">
+    {% endif %}
+  </div>
 
-    <!-- HEADER -->
-    <header class="execucao-header">
-        <h1>{{ treino.nome }}</h1>
+  <!-- CONTEÚDO -->
+  <div class="execucao-conteudo">
+    <h2>{{ exercicio.nome }}</h2>
+    <p class="descricao">{{ exercicio.descricao }}</p>
 
-        <div class="progresso-topo">
-            <div class="barra">
-                <div class="barra-preenchida" id="barra-progresso"></div>
-            </div>
-            <span>
-                Exercício <strong id="indice-atual">1</strong> de {{ treino.exercicios|length }}
-            </span>
-        </div>
-    </header>
+    <div class="serie">
+      <strong>{{ exercicio.series }} séries</strong><br>
+      {% if exercicio.reps %}
+        Reps: {{ exercicio.reps }}
+      {% else %}
+        Tempo: {{ exercicio.tempo }}
+      {% endif %}
+    </div>
 
-    <!-- CARD EXERCÍCIO -->
-    <section class="card-execucao">
+    <a class="btn-descanso"
+       href="/treino/{{ treino.id }}/executar?i={{ proximo_indice }}">
+      Próximo exercício
+    </a>
+  </div>
 
-        <h2 class="nome-exercicio">{{ ex.nome }}</h2>
+</div>
 
-        <!-- IMAGEM -->
-        <div class="imagem-exercicio">
-            <img
-                src="{{ url_for('static', filename='imagens/exercicios/' ~ ex.imagem) }}"
-                alt="{{ ex.nome }}"
-            >
-        </div>
-
-        <!-- EXECUÇÃO -->
-        <div class="execucao-box">
-            <h3>Execução</h3>
-            <p>{{ ex.descricao }}</p>
-        </div>
-
-        <!-- SÉRIE / CARGA -->
-        <div class="serie-box">
-            <div class="serie-info">
-                <strong>Série 1</strong>
-                <span>
-                    {% if ex.metrica_execucao == "repeticoes" %}
-                        Reps: {{ ex.reps }}
-                    {% else %}
-                        Tempo: {{ ex.tempo }}
-                    {% endif %}
-                </span>
-            </div>
-
-            <div class="carga">
-                <button onclick="alterarCarga(-1)">−</button>
-                <span id="valor-carga">0 kg</span>
-                <button onclick="alterarCarga(1)">+</button>
-            </div>
-        </div>
-
-        <!-- DESCANSO -->
-        <button class="btn-descanso" id="btn-descanso">
-            <div class="progresso"></div>
-            <div class="texto">Iniciar descanso (45s)</div>
-        </button>
-
-        <!-- DICA -->
-        <div class="dica">
-            <strong>Dica rápida</strong>
-            <p>Evite balançar o tronco durante o movimento.</p>
-        </div>
-
-        <!-- CONCLUIR -->
-        <button class="btn-concluir" onclick="concluirExercicio()">
-            Concluir exercício
-        </button>
-
-    </section>
-</main>
-
-<script src="{{ url_for('static', filename='js/execucao.js') }}"></script>
 </body>
 </html>

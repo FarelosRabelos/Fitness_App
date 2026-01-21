@@ -1,115 +1,99 @@
-/* =========================
-   BASE
-========================= */
 body {
-    margin: 0;
-    background: #0f1115;
-    color: #fff;
-    font-family: Arial, sans-serif;
+  margin: 0;
+  background: #0f1115;
+  color: #fff;
+  font-family: Arial, sans-serif;
 }
 
 .voltar {
-    display: inline-block;
-    padding: 16px;
-    color: #fff;
-    text-decoration: none;
-    opacity: 0.85;
+  display: inline-block;
+  padding: 16px;
+  color: #fff;
+  text-decoration: none;
+  opacity: 0.8;
 }
 
-/* =========================
-   CONTAINER
-========================= */
 .treino-lista {
-    max-width: 520px;
-    margin: 0 auto;
-    padding: 16px;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 16px;
 }
 
-/* =========================
-   CABEÇALHO
-========================= */
-.cabecalho {
-    margin-bottom: 24px;
-}
-
+/* CABEÇALHO */
 .cabecalho h1 {
-    margin: 0 0 4px;
-    font-size: 2rem;
+  margin: 0 0 6px;
+  font-size: 1.6rem;
 }
 
 .descricao-treino {
-    margin: 0;
-    opacity: 0.75;
-    font-size: 0.9rem;
+  margin: 0;
+  font-size: 0.85rem;
+  opacity: 0.7;
 }
 
-/* =========================
-   LISTA DE EXERCÍCIOS
-========================= */
-.exercicios h2 {
-    margin: 0 0 12px;
-    font-size: 1.3rem;
-}
-
+/* LISTA */
 .lista-exercicios {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 24px 0 0;
 }
 
 .item-exercicio {
-    display: flex;
-    align-items: center;
-    gap: 12px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
 
-    background: #2b3647;
-    border: 1px solid #1d222a;
-    border-radius: 14px;
+  background: #1d222a;
+  border-radius: 16px;
+  padding: 12px;
 
-    padding: 12px;
-    margin-bottom: 12px;
+  margin-bottom: 12px;
 }
 
-.item-exercicio img {
-    width: 56px;
-    height: 56px;
-    object-fit: contain;
-    flex-shrink: 0;
+.indice {
+  width: 22px;
+  text-align: center;
+  font-size: 0.85rem;
+  opacity: 0.5;
 }
 
-.item-exercicio .info {
-    display: flex;
-    flex-direction: column;
+.thumb {
+  width: 64px;
+  height: 64px;
+  object-fit: cover;
+  border-radius: 12px;
+  background: #2b3647;
 }
 
-.item-exercicio .nome {
-    font-size: 0.95rem;
-    font-weight: 600;
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.item-exercicio .metricas {
-    font-size: 0.75rem;
-    opacity: 0.75;
+.nome {
+  font-size: 0.95rem;
+  font-weight: 600;
 }
 
-/* =========================
-   AÇÃO
-========================= */
+.metricas {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+/* BOTÃO */
 .acao {
-    margin-top: 28px;
-    text-align: center;
+  margin-top: 28px;
 }
 
 .btn-iniciar {
-    display: inline-block;
-    width: 100%;
-    padding: 14px 0;
-
-    background: #2465fc;
-    color: #fff;
-    text-decoration: none;
-    font-weight: bold;
-    letter-spacing: 0.5px;
-
-    border-radius: 14px;
+  display: block;
+  width: 100%;
+  padding: 14px 0;
+  background: #2465fc;
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 999px;
+  text-align: center;
 }

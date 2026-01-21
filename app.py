@@ -1,6 +1,6 @@
 import os
 import json
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -8,22 +8,18 @@ app = Flask(__name__)
 # PATHS
 # =========================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DATA_DIR = os.path.join(BASE_DIR, 'data')
+DATA_DIR = os.path.join(BASE_DIR, "data")
 
-EXERCICIOS_PATH = os.path.join(DATA_DIR, 'catalogo.json')
-TREINOS_PATH = os.path.join(DATA_DIR, 'treinos.json')
+TREINOS_PATH = os.path.join(DATA_DIR, "treinos.json")
+EXERCICIOS_PATH = os.path.join(DATA_DIR, "catalogo.json")
+
 
 # =========================
 # LOADERS
 # =========================
-def carregar_treinos():
-    with open(TREINOS_PATH, encoding='utf-8') as arquivo:
-        return json.load(arquivo)
-
-
-def carregar_exercicios():
-    with open(EXERCICIOS_PATH, encoding='utf-8') as arquivo:
-        return json.load(arquivo)
+def carregar_json(path):
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
 
 
 def buscar_variacao(catalogo, variacao_id):
@@ -35,8 +31,8 @@ def buscar_variacao(catalogo, variacao_id):
                     "nome": variacao["nome"],
                     "descricao": variacao["descricao"],
                     "imagem": variacao.get("imagem"),
-                    "tipo_carga": variacao.get("tipo_carga"),
-                    "metrica_execucao": exercicio["metrica_execucao"]
+                    "video": variacao.get("video"),
+                    "metrica": exercicio["metrica_execucao"],
                 }
     return None
 
@@ -44,77 +40,83 @@ def buscar_variacao(catalogo, variacao_id):
 # =========================
 # ROTAS
 # =========================
-@app.route('/')
+@app.route("/")
 def home():
-    treinos = carregar_treinos()
-    return render_template('index.html', treinos=treinos)
+    treinos = carregar_json(TREINOS_PATH)
+    return render_template("index.html", treinos=treinos)
 
 
-@app.route('/treino/<id_treino>')
+@app.route("/treino/<id_treino>")
 def treino_lista(id_treino):
-    treinos = carregar_treinos()
+    treinos = carregar_json(TREINOS_PATH)
+    catalogo = carregar_json(EXERCICIOS_PATH)
 
-    treino = next(
-        (t for t in treinos if str(t["id"]) == id_treino),
-        None
-    )
-
+    treino = next((t for t in treinos if t["id"] == id_treino), None)
     if not treino:
         return "Treino não encontrado", 404
 
+    exercicios = []
+    for item in treino["exercicios"]:
+        variacao = buscar_variacao(catalogo, item["variacao_id"])
+        if variacao:
+            exercicios.append({
+                "nome": variacao["nome"],
+                "imagem": variacao["imagem"],
+                "series": item.get("series"),
+                "reps": item.get("reps"),
+                "tempo": item.get("tempo"),
+            })
+
     return render_template(
-        'treino_lista.html',
-        treino=treino
+        "treino_lista.html",
+        treino={
+            "id": treino["id"],
+            "titulo": treino["titulo"],
+            "subtitulo": treino["subtitulo"],
+            "duracao": treino["duracao"],
+            "exercicios": exercicios,
+        }
     )
 
 
-@app.route('/treino/<id_treino>/executar')
+@app.route("/treino/<id_treino>/executar")
 def treino_execucao(id_treino):
-    treinos = carregar_treinos()
-    catalogo = carregar_exercicios()
+    treinos = carregar_json(TREINOS_PATH)
+    catalogo = carregar_json(EXERCICIOS_PATH)
 
-    treino = next(
-        (t for t in treinos if str(t["id"]) == id_treino),
-        None
-    )
+    indice = int(request.args.get("i", 0))
 
+    treino = next((t for t in treinos if t["id"] == id_treino), None)
     if not treino:
         return "Treino não encontrado", 404
 
     exercicios_execucao = []
-
     for item in treino["exercicios"]:
-        variacao_id = item.get("variacao_id")
-        if not variacao_id:
-            continue
+        variacao = buscar_variacao(catalogo, item["variacao_id"])
+        if variacao:
+            exercicios_execucao.append({
+                "id": variacao["id"],
+                "nome": variacao["nome"],
+                "descricao": variacao["descricao"],
+                "imagem": variacao.get("imagem"),
+                "video": variacao.get("video"),
+                "series": item.get("series"),
+                "reps": item.get("reps"),
+                "tempo": item.get("tempo"),
+            })
 
-        variacao = buscar_variacao(catalogo, variacao_id)
-        if not variacao:
-            continue
+    if indice >= len(exercicios_execucao):
+        return "Treino finalizado"
 
-        exercicio_final = {
-            "id": variacao["id"],
-            "nome": variacao["nome"],
-            "descricao": variacao["descricao"],
-            "imagem": variacao["imagem"],
-            "metrica_execucao": variacao["metrica_execucao"],
-            "series": item.get("series"),
-            "reps": item.get("reps"),
-            "tempo": item.get("tempo")
-        }
-
-        exercicios_execucao.append(exercicio_final)
-
-    treino_execucao_data = {
-        "id": treino["id"],
-        "nome": treino["nome"],
-        "exercicios": exercicios_execucao
-    }
-
+    exercicio_atual = exercicios_execucao[indice]
 
     return render_template(
         "execucao.html",
-        treino=treino_execucao_data
+        treino=treino,
+        exercicio=exercicio_atual,
+        indice=indice + 1,
+        total=len(exercicios_execucao),
+        proximo_indice=indice + 1,
     )
 
 
@@ -122,4 +124,5 @@ def treino_execucao(id_treino):
 # RUN
 # =========================
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)

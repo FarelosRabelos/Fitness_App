@@ -1,52 +1,62 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ treino.nome }} – COREON</title>
-
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/treino_lista.css') }}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ treino.titulo }} – COREON</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/treino_lista.css') }}">
 </head>
-
 <body>
 
 <a href="/" class="voltar">← Voltar</a>
 
 <main class="treino-lista">
 
-    <header class="cabecalho">
-        <h1>{{ treino.nome }}</h1>
-        <p class="descricao-treino">
-            {{ treino.descricao or "Prepare-se para o treino" }}
-        </p>
-    </header>
+  <!-- CABEÇALHO -->
+  <header class="cabecalho">
+    <h1>{{ treino.titulo }} {{ treino.subtitulo }}</h1>
+    <p class="descricao-treino">
+      {{ treino.exercicios | length }} exercícios · {{ treino.duracao }}
+    </p>
+  </header>
 
-    <section class="exercicios">
-        <h2>Exercícios</h2>
+  <!-- LISTA -->
+  <section class="exercicios">
+    <ul class="lista-exercicios">
+      {% for ex in treino.exercicios %}
+      <li class="item-exercicio">
 
-        <ul class="lista-exercicios">
-            {% for ex in treino.exercicios %}
-            <li class="item-exercicio">
-                <img
-                    src="{{ url_for('static', filename='imagens/exercicios/' ~ ex.imagem) }}"
-                    alt="{{ ex.nome }}"
-                >
-                <div class="info">
-                    <span class="nome">{{ ex.nome }}</span>
-                    <span class="metricas">
-                        {{ ex.series }}x {{ ex.reps or ex.tempo }}
-                    </span>
-                </div>
-            </li>
-            {% endfor %}
-        </ul>
-    </section>
+        <span class="indice">{{ loop.index }}</span>
 
-    <div class="acao">
-        <a href="/treino/{{ treino.id }}/executar" class="btn-iniciar">
-            Iniciar treino
-        </a>
-    </div>
+        <img
+          src="{{ url_for('static', filename='imagens/exercicios/' ~ ex.imagem) }}"
+          alt="{{ ex.nome }}"
+          class="thumb"
+        >
+
+        <div class="info">
+          <strong class="nome">{{ ex.nome }}</strong>
+          <span class="metricas">
+            {{ ex.series }} séries ·
+            {% if ex.reps %}
+              {{ ex.reps }} reps
+            {% else %}
+              {{ ex.tempo }}
+            {% endif %}
+          </span>
+        </div>
+
+      </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+  <!-- AÇÃO -->
+  <div class="acao">
+    <a href="/treino/{{ treino.id }}/executar" class="btn-iniciar">
+      Iniciar treino
+    </a>
+  </div>
 
 </main>
 
