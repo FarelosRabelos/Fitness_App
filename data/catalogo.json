@@ -1,10 +1,12 @@
 {
-  "versao": "1.4",
+  "versao": "1.3",
   "exercicios": [
 
     {
       "id": "ex_supino",
       "nome": "Supino",
+      "grupo_muscular": ["peito", "triceps"],
+      "tipo": "forca",
       "metrica_execucao": "repeticoes",
       "variacoes": [
         {
@@ -12,16 +14,14 @@
           "nome": "Supino reto na máquina",
           "descricao": "Empurre a carga à frente estendendo os braços.",
           "tipo_carga": "kg",
-          "imagem": "supino_reto_maquina.png",
-          "video": "supino_reto_maquina.mp4"
+          "imagem": "supino_reto_na_maquina.png"
         },
         {
           "id": "ex_supino__maquina_inclinado",
           "nome": "Supino inclinado na máquina",
           "descricao": "Empurre a carga para frente em banco inclinado.",
           "tipo_carga": "kg",
-          "imagem": "supino_inclinado_maquina.png",
-          "video": "supino_inclinado_maquina.mp4"
+          "imagem": "supino_inclinado_na_maquina.png"
         }
       ]
     },
@@ -29,6 +29,8 @@
     {
       "id": "ex_crucifixo",
       "nome": "Crucifixo",
+      "grupo_muscular": ["peito"],
+      "tipo": "forca",
       "metrica_execucao": "repeticoes",
       "variacoes": [
         {
@@ -36,8 +38,7 @@
           "nome": "Crucifixo na máquina",
           "descricao": "Abra e feche os braços de forma controlada.",
           "tipo_carga": "kg",
-          "imagem": "crucifixo_maquina.png",
-          "video": "crucifixo_maquina.mp4"
+          "imagem": "crucifixo_maquina.png"
         }
       ]
     },
@@ -45,6 +46,8 @@
     {
       "id": "ex_desenvolvimento_ombros",
       "nome": "Desenvolvimento de ombros",
+      "grupo_muscular": ["ombros"],
+      "tipo": "forca",
       "metrica_execucao": "repeticoes",
       "variacoes": [
         {
@@ -52,8 +55,7 @@
           "nome": "Desenvolvimento na máquina",
           "descricao": "Empurre a carga para cima partindo da altura dos ombros.",
           "tipo_carga": "kg",
-          "imagem": "desenvolvimento_ombros_maquina.png",
-          "video": "desenvolvimento_ombros_maquina.mp4"
+          "imagem": "desenvolvimento_ombros_maquina.png"
         }
       ]
     },
@@ -61,6 +63,8 @@
     {
       "id": "ex_elevacao_lateral",
       "nome": "Elevação lateral",
+      "grupo_muscular": ["ombros"],
+      "tipo": "forca",
       "metrica_execucao": "repeticoes",
       "variacoes": [
         {
@@ -68,8 +72,7 @@
           "nome": "Elevação lateral com halteres",
           "descricao": "Eleve os braços lateralmente até a altura dos ombros.",
           "tipo_carga": "kg",
-          "imagem": "elevacao_lateral_halteres.png",
-          "video": "elevacao_lateral_halteres.mp4"
+          "imagem": "elevacao_lateral_com_halteres.png"
         }
       ]
     },
@@ -77,6 +80,8 @@
     {
       "id": "ex_triceps",
       "nome": "Tríceps",
+      "grupo_muscular": ["triceps"],
+      "tipo": "forca",
       "metrica_execucao": "repeticoes",
       "variacoes": [
         {
@@ -84,15 +89,115 @@
           "nome": "Tríceps na polia com barra",
           "descricao": "Empurre a barra para baixo estendendo os cotovelos.",
           "tipo_carga": "kg",
-          "imagem": "triceps_polia_barra.png",
-          "video": "triceps_polia_barra.mp4"
+          "imagem": "triceps_na_polia.png"
+        }
+      ]
+    },
+
+    {
+      "id": "ex_agachamento",
+      "nome": "Agachamento",
+      "grupo_muscular": ["quadriceps", "gluteos"],
+      "tipo": "forca",
+      "metrica_execucao": "repeticoes",
+      "variacoes": [
+        {
+          "id": "ex_agachamento_smith__maquina",
+          "nome": "Agachamento no Smith",
+          "descricao": "Agache mantendo o tronco ereto e os pés bem apoiados.",
+          "tipo_carga": "kg",
+          "imagem": "agachamento_smith.png"
+        }
+      ]
+    },
+
+    {
+      "id": "ex_mesa_flexora",
+      "nome": "Mesa flexora",
+      "grupo_muscular": ["posterior_coxa"],
+      "tipo": "forca",
+      "metrica_execucao": "repeticoes",
+      "variacoes": [
+        {
+          "id": "ex_mesa_flexora__maquina",
+          "nome": "Mesa flexora",
+          "descricao": "Flexione os joelhos contra a resistência.",
+          "tipo_carga": "kg",
+          "imagem": "mesa_flexora.png"
+        }
+      ]
+    },
+
+    {
+      "id": "ex_leg_press",
+      "nome": "Leg press",
+      "grupo_muscular": ["quadriceps", "gluteos"],
+      "tipo": "forca",
+      "metrica_execucao": "repeticoes",
+      "variacoes": [
+        {
+          "id": "ex_leg_press__maquina",
+          "nome": "Leg press",
+          "descricao": "Empurre a plataforma estendendo os joelhos.",
+          "tipo_carga": "kg",
+          "imagem": "leg_press.png"
+        }
+      ]
+    },
+
+    {
+      "id": "ex_panturrilha",
+      "nome": "Panturrilha",
+      "grupo_muscular": ["panturrilha"],
+      "tipo": "forca",
+      "metrica_execucao": "repeticoes",
+      "variacoes": [
+        {
+          "id": "ex_panturrilha_leg_press__maquina",
+          "nome": "Panturrilha no leg press",
+          "descricao": "Eleve os calcanhares contra a resistência.",
+          "tipo_carga": "kg",
+          "imagem": "panturrilha_no_leg_press.png"
+        }
+      ]
+    },
+
+    {
+      "id": "ex_core",
+      "nome": "Core",
+      "grupo_muscular": ["abdomen"],
+      "tipo": "core",
+      "metrica_execucao": "tempo",
+      "variacoes": [
+        {
+          "id": "ex_mountain_climb__solo",
+          "nome": "Mountain climber",
+          "descricao": "Movimente os joelhos alternadamente em posição de prancha.",
+          "tipo_carga": "nenhum",
+          "imagem": "mountain_climb.png"
+        },
+        {
+          "id": "ex_prancha__estatica",
+          "nome": "Prancha",
+          "descricao": "Mantenha o corpo alinhado apoiado nos antebraços.",
+          "tipo_carga": "nenhum",
+          "imagem": "prancha.png"
+        },
+        {
+          "id": "ex_prancha_lateral__solo",
+          "nome": "Prancha lateral",
+          "descricao": "Mantenha o corpo alinhado apoiado lateralmente.",
+          "tipo_carga": "nenhum",
+          "imagem": "prancha_lateral.png"
         }
       ]
     },
 
     {
       "id": "ex_abdominal",
-      "nome": "Abdômen",
+      "nome": "Abdominais",
+      "grupo_muscular": ["abdomen"],
+      "tipo": "core",
       "metrica_execucao": "repeticoes",
       "variacoes": [
         {
@@ -100,32 +205,35 @@
           "nome": "Abdominal tradicional",
           "descricao": "Flexione o tronco contraindo o abdômen.",
           "tipo_carga": "nenhum",
-          "imagem": "abdominal_tradicional.png",
-          "video": "abdominal_tradicional.mp4"
+          "imagem": "abdominal_tradicional.png"
         },
         {
           "id": "ex_abdominal_curto__solo",
           "nome": "Abdominal curto",
           "descricao": "Flexão curta focando no abdômen superior.",
           "tipo_carga": "nenhum",
-          "imagem": "abdominal_curto.png",
-          "video": "abdominal_curto.mp4"
-        }
-      ]
-    },
-
-    {
-      "id": "ex_prancha",
-      "nome": "Prancha",
-      "metrica_execucao": "tempo",
-      "variacoes": [
+          "imagem": "abdominal_curto.png"
+        },
         {
-          "id": "ex_prancha__estatica",
-          "nome": "Prancha estática",
-          "descricao": "Mantenha o corpo alinhado apoiado nos antebraços.",
+          "id": "ex_abdominal_infra__solo",
+          "nome": "Abdominal infra",
+          "descricao": "Eleve as pernas contraindo o abdômen inferior.",
           "tipo_carga": "nenhum",
-          "imagem": "prancha.png",
-          "video": "prancha.mp4"
+          "imagem": "abdominal_infra.png"
+        },
+        {
+          "id": "ex_abdominal_cruzado__solo",
+          "nome": "Abdominal cruzado",
+          "descricao": "Faça rotação do tronco alternando os lados.",
+          "tipo_carga": "nenhum",
+          "imagem": "abdominal_cruzado.png"
+        },
+        {
+          "id": "ex_abdominal_pinguim__solo",
+          "nome": "Abdominal pinguim",
+          "descricao": "Toque alternadamente os calcanhares com as mãos.",
+          "tipo_carga": "nenhum",
+          "imagem": "abdominal_pinguim.png"
         }
       ]
     }
