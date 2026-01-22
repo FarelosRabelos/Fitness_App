@@ -31,7 +31,7 @@
       { "variacao_id": "ex_mesa_flexora__maquina", "series": 3, "reps": "10-12" },
       { "variacao_id": "ex_adutora__maquina", "series": 4, "reps": "10-12" },
       { "variacao_id": "ex_cadeira_extensora__maquina", "series": 4, "reps": "15-20" },
-      { "variacao_id": "ex_panturrilha_leg_press__maquina", "series": 4, "reps": "12-15" },
+      { "variacao_id": "ex_panturrilha__pe", "series": 4, "reps": "12-15" },
       { "variacao_id": "ex_abdominal_infra__solo", "series": 3, "reps": "15-20" },
       { "variacao_id": "ex_mountain_climb__solo", "series": 3, "tempo": "60s" }
     ]
@@ -69,14 +69,14 @@
       { "variacao_id": "ex_mesa_flexora__maquina", "series": 3, "reps": "10-12" },
       { "variacao_id": "ex_abdutora__maquina", "series": 4, "reps": "10-12" },
       { "variacao_id": "ex_cadeira_extensora__maquina", "series": 2, "reps": "15" },
-      { "variacao_id": "ex_panturrilha_leg_press__maquina", "series": 4, "reps": "12-15" },
+      { "variacao_id": "ex_panturrilha__pe", "series": 4, "reps": "12-15" },
       { "variacao_id": "ex_prancha__estatica", "series": 3, "tempo": "45-60s" },
       { "variacao_id": "ex_prancha_lateral__solo", "series": 3, "tempo": "30-45s" }
     ]
   },
 
   {
-    "id": "abdomen_extra",
+    "id": "abdomen",
     "titulo": "Abdômen",
     "subtitulo": "Core completo",
     "grupo": "Core",
