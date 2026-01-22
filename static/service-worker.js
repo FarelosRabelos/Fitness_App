@@ -1,25 +1,31 @@
-const CACHE_NAME = "coreon-v3";
+const CACHE_NAME = "coreon-v4";
 
-const URLS = [
-  "/",                       // home
-  "/execucao",                 // tela de treino
+const STATIC_ASSETS = [
+  "/",
   "/static/manifest.json",
+
+  /* CSS */
+  "/static/css/execucao.css",
+
+  /* JS */
   "/static/js/execucao.js",
+
+  /* IMAGENS */
   "/static/imagens/visual/logo.png",
   "/static/imagens/visual/icone-trans.png",
   "/static/imagens/silhuetas/superior.png",
   "/static/imagens/silhuetas/inferior.png"
 ];
 
-// INSTALA
+/* INSTALL */
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(URLS))
+    caches.open(CACHE_NAME).then(cache => cache.addAll(STATIC_ASSETS))
   );
   self.skipWaiting();
 });
 
-// ATIVA
+/* ACTIVATE */
 self.addEventListener("activate", event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -31,11 +37,25 @@ self.addEventListener("activate", event => {
   self.clients.claim();
 });
 
-// FETCH
+/* FETCH */
 self.addEventListener("fetch", event => {
+  const { request } = event;
+
+  // ⚠️ Não intercepta requisições não-GET
+  if (request.method !== "GET") return;
+
+  // HTML → sempre rede primeiro
+  if (request.headers.get("accept")?.includes("text/html")) {
+    event.respondWith(
+      fetch(request).catch(() => caches.match("/"))
+    );
+    return;
+  }
+
+  // Assets estáticos → cache first
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
+    caches.match(request).then(response => {
+      return response || fetch(request);
     })
   );
 });

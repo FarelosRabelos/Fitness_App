@@ -1,6 +1,6 @@
 import os
 import json
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 
 app = Flask(__name__)
 
@@ -9,6 +9,7 @@ app = Flask(__name__)
 # =========================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 DATA_DIR = os.path.join(BASE_DIR, "data")
+STATIC_DIR = os.path.join(BASE_DIR, "static")
 
 TREINOS_PATH = os.path.join(DATA_DIR, "treinos.json")
 EXERCICIOS_PATH = os.path.join(DATA_DIR, "catalogo.json")
@@ -38,7 +39,7 @@ def buscar_variacao(catalogo, variacao_id):
 
 
 # =========================
-# ROTAS
+# ROTAS APP
 # =========================
 @app.route("/")
 def home():
@@ -121,8 +122,23 @@ def treino_execucao(id_treino):
 
 
 # =========================
+# ROTAS PWA (CRÍTICAS)
+# =========================
+@app.route("/service-worker.js")
+def service_worker():
+    # precisa estar no ROOT do domínio
+    return send_from_directory(STATIC_DIR, "service-worker.js")
+
+
+@app.route("/manifest.json")
+def manifest():
+    # opcional, mas garante acesso correto
+    return send_from_directory(STATIC_DIR, "manifest.json")
+
+
+# =========================
 # RUN
 # =========================
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
+    app.run(host="0.0.0.0", port=port)

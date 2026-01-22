@@ -4,8 +4,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>COREON</title>
+
+  <!-- CSS -->
   <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+  <!-- PWA -->
+  <link rel="manifest" href="/static/manifest.json">
+  <meta name="theme-color" content="#2465fc">
 </head>
+
 <body>
 
 <header class="app-header">
@@ -29,7 +36,7 @@
 
 <main class="home">
 
-  <!-- DESTAQUE DINÂMICO (CONTROLADO PELO JS) -->
+  <!-- DESTAQUE DINÂMICO -->
   <section class="destaque">
     <div class="destaque-bg"></div>
 
@@ -51,7 +58,6 @@
 
     <div class="grid-treinos">
 
-      <!-- SUPERIOR -->
       {% for treino in treinos if treino.grupo == "Superior" %}
       <a href="/treino/{{ treino.id }}" class="card-treino">
         <div class="info">
@@ -67,7 +73,6 @@
       </a>
       {% endfor %}
 
-      <!-- INFERIOR -->
       {% for treino in treinos if treino.grupo == "Inferior" %}
       <a href="/treino/{{ treino.id }}" class="card-treino">
         <div class="info">
@@ -85,7 +90,7 @@
 
     </div>
 
-    <!-- ABDÔMEN (CARD LONGO) -->
+    <!-- ABDÔMEN -->
     <a href="/treino/abdomen" class="card-treino card-longo">
       <div class="info">
         <strong>Abdômen</strong>
@@ -98,8 +103,17 @@
 
 </main>
 
-<!-- JS SEMPRE NO FINAL -->
+<!-- JS -->
 <script src="{{ url_for('static', filename='js/home.js') }}"></script>
+
+<!-- REGISTRO DO SERVICE WORKER -->
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service-worker.js")
+    .then(() => console.log("Service Worker registrado"))
+    .catch(err => console.error("Erro SW:", err));
+}
+</script>
 
 </body>
 </html>
