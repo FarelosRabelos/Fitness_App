@@ -1,8 +1,14 @@
-const CACHE_NAME = "coreon-v4";
+const CACHE_NAME = "coreon-v5";
+
+/*
+  ⚠️ ATENÇÃO IMPORTANTE
+  - NÃO cacheamos "/" no install para evitar falha silenciosa
+  - Cacheamos manifest e ícones explicitamente
+*/
 
 const STATIC_ASSETS = [
-  "/",
-  "/static/manifest.json",
+  /* MANIFEST */
+  "/manifest.json",
 
   /* CSS */
   "/static/css/execucao.css",
@@ -10,41 +16,59 @@ const STATIC_ASSETS = [
   /* JS */
   "/static/js/execucao.js",
 
-  /* IMAGENS */
-  "/static/imagens/visual/logo.png",
-  "/static/imagens/visual/icone-trans.png",
+  /* IMAGENS VISUAIS */
+  "/static/imagens/icons/logo.png",
+  "/static/imagens/icons/icone-trans.png",
+
+  /* SILHUETAS */
   "/static/imagens/silhuetas/superior.png",
-  "/static/imagens/silhuetas/inferior.png"
+  "/static/imagens/silhuetas/inferior.png",
+
+  /* ÍCONES PWA (OBRIGATÓRIO) */
+  "/static/imagens/icons/icon-192.png",
+  "/static/imagens/icons/icon-512.png"
 ];
 
-/* INSTALL */
+/* =========================
+   INSTALL
+========================= */
 self.addEventListener("install", event => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(STATIC_ASSETS))
+    caches.open(CACHE_NAME).then(cache => {
+      return cache.addAll(STATIC_ASSETS);
+    })
   );
+
   self.skipWaiting();
 });
 
-/* ACTIVATE */
+/* =========================
+   ACTIVATE
+========================= */
 self.addEventListener("activate", event => {
   event.waitUntil(
-    caches.keys().then(keys =>
-      Promise.all(
-        keys.filter(k => k !== CACHE_NAME).map(k => caches.delete(k))
-      )
-    )
+    caches.keys().then(keys => {
+      return Promise.all(
+        keys
+          .filter(key => key !== CACHE_NAME)
+          .map(key => caches.delete(key))
+      );
+    })
   );
+
   self.clients.claim();
 });
 
-/* FETCH */
+/* =========================
+   FETCH
+========================= */
 self.addEventListener("fetch", event => {
   const { request } = event;
 
-  // ⚠️ Não intercepta requisições não-GET
+  // Não intercepta métodos não-GET
   if (request.method !== "GET") return;
 
-  // HTML → sempre rede primeiro
+  // HTML → network first (app sempre atualizado)
   if (request.headers.get("accept")?.includes("text/html")) {
     event.respondWith(
       fetch(request).catch(() => caches.match("/"))
@@ -52,7 +76,7 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  // Assets estáticos → cache first
+  // Assets → cache first
   event.respondWith(
     caches.match(request).then(response => {
       return response || fetch(request);
