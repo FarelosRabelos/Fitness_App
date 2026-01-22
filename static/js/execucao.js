@@ -5,10 +5,16 @@
   const valorCarga = document.getElementById("valor-carga");
   const textoSerie = document.getElementById("texto-serie");
 
+  /* proteção básica */
+  if (!btnDescanso || !btnProximo || !valorCarga || !textoSerie) {
+    console.error("Elementos essenciais da execução não encontrados");
+    return;
+  }
+
   const STORAGE_CARGAS = "coreon_cargas";
   const TEMPO_DESCANSO = 45;
 
-  const TOTAL_SERIES = parseInt(textoSerie.dataset.totalSeries, 10);
+  const TOTAL_SERIES = parseInt(textoSerie.dataset.totalSeries, 10) || 1;
 
   let intervalo = null;
   let cargaAtual = 0;
@@ -103,8 +109,40 @@
   }
 
   btnProximo.addEventListener("click", () => {
-    nextLink.click();
+    const ehFinal = btnProximo.dataset.final === "true";
+
+    if (ehFinal) {
+      if (typeof TREINO_ATUAL === "undefined") {
+        console.error("TREINO_ATUAL não definido");
+        return;
+      }
+      salvarTreinoConcluido(TREINO_ATUAL);
+      window.location.href = "/";
+    } else {
+      if (nextLink) {
+        nextLink.click();
+      }
+    }
   });
+
+  function salvarTreinoConcluido(treino) {
+    const historico = JSON.parse(
+      localStorage.getItem("coreon_historico") || "[]"
+    );
+
+    historico.push({
+      id: Date.now().toString(),
+      treino_id: treino.id,
+      treino_nome: `${treino.titulo} – ${treino.subtitulo}`,
+      imagem: treino.imagem,
+      data: new Date().toISOString()
+    });
+
+    localStorage.setItem(
+      "coreon_historico",
+      JSON.stringify(historico)
+    );
+  }
 
   carregarCargaAtual();
 })();

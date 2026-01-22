@@ -66,24 +66,28 @@
     Iniciar descanso (45s)
   </button>
 
-  <button class="btn-secundario" id="btn-proximo">
-    Próximo exercício
+  <button
+    class="btn-secundario"
+    id="btn-proximo"
+    data-final="{{ 'true' if indice == total else 'false' }}"
+  >
+    {{ 'Finalizar treino' if indice == total else 'Próximo exercício' }}
   </button>
 
-  {% if exercicio.dica %}
-  <div class="dica">💡 {{ exercicio.dica }}</div>
-  {% endif %}
+  <a id="next-exercise"
+    href="/treino/{{ treino.id }}/executar?i={{ proximo_indice }}"
+    style="display:none"></a>
 
-</div>
-
-<a id="next-exercise"
-   href="/treino/{{ treino.id }}/executar?i={{ proximo_indice }}"
-   style="display:none"></a>
-
-<script>
-  const EXERCICIO_ID = "{{ exercicio.id }}";
-</script>
-<script src="{{ url_for('static', filename='js/execucao.js') }}"></script>
+  <script>
+    const EXERCICIO_ID = "{{ exercicio.id }}";
+    const TREINO_ATUAL = {
+      id: "{{ treino.id }}",
+      titulo: "{{ treino.titulo }}",
+      subtitulo: "{{ treino.subtitulo }}",
+      imagem: "{{ treino.imagem }}"
+    };
+  </script>
+  <script src="{{ url_for('static', filename='js/execucao.js') }}"></script>
 
 </body>
 </html>

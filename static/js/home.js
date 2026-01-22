@@ -23,8 +23,12 @@ function obterProximoTreino() {
     return ORDEM_ROTINA[0];
   }
 
-  const ultimo = historico[historico.length - 1].tipo;
+  const ultimo = historico[historico.length - 1].treino_id;
   const index = ORDEM_ROTINA.indexOf(ultimo);
+
+  if (index === -1) {
+    return ORDEM_ROTINA[0];
+  }
 
   return ORDEM_ROTINA[(index + 1) % ORDEM_ROTINA.length];
 }

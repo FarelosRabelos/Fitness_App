@@ -46,6 +46,9 @@ def home():
     treinos = carregar_json(TREINOS_PATH)
     return render_template("index.html", treinos=treinos)
 
+@app.route("/historico")
+def historico():
+    return render_template("historico.html")
 
 @app.route("/treino/<id_treino>")
 def treino_lista(id_treino):
