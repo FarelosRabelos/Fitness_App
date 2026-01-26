@@ -228,3 +228,70 @@ body {
   height: 64px;
   border-radius: 14px;
 }
+
+/* ===== LINK INTERNO (ANTI-LINK FANTASMA) ===== */
+.card-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  text-decoration: none;
+  color: #ffffff;
+}
+
+/* ===== SUPERMAN — BODY CONTROL ===== */
+.superman-section {
+  margin-top: 28px;
+}
+
+.superman-card {
+  background: var(--card-bg);
+  border-radius: 20px;
+  padding: 16px;
+}
+
+.superman-header strong {
+  display: block;
+  font-size: 1rem;
+  letter-spacing: 0.5px;
+}
+
+.superman-header span {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  margin-bottom: 14px;
+  display: block;
+}
+
+.superman-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.superman-box {
+  background: #151922;
+  border-radius: 14px;
+  padding: 14px 8px;
+  text-align: center;
+  text-decoration: none;
+  color: #ffffff;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.superman-box:hover {
+  background: #1f2433;
+  transform: translateY(-2px);
+}
+
+.superman-box img {
+  width: 30px;
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.superman-box span {
+  font-size: 0.75rem;
+  line-height: 1.1;
+}

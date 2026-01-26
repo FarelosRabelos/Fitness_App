@@ -36,7 +36,7 @@ function obterProximoTreino() {
 function atualizarDestaque() {
   const tipo = obterProximoTreino();
 
-  const titulo = {
+  const TITULO = {
     superior_empurrar: "Superior",
     superior_puxar: "Superior",
     inferior_quadriceps: "Inferior",
@@ -44,7 +44,7 @@ function atualizarDestaque() {
     abdomen: "Abdômen"
   };
 
-  const subtitulo = {
+  const SUBTITULO = {
     superior_empurrar: "Empurrar",
     superior_puxar: "Puxar",
     inferior_quadriceps: "Quadríceps",
@@ -52,9 +52,8 @@ function atualizarDestaque() {
     abdomen: "Core completo"
   };
 
-  document.getElementById("destaque-titulo").textContent = titulo[tipo];
-  document.getElementById("destaque-subtitulo").textContent =
-    `${subtitulo[tipo]} · 45 min`;
+  document.getElementById("destaque-titulo").textContent = TITULO[tipo];
+  document.getElementById("destaque-subtitulo").textContent = SUBTITULO[tipo];
 
   document.querySelector(".destaque-bg").style.backgroundImage =
     `url('/static/imagens/silhuetas/${IMAGENS[tipo]}')`;

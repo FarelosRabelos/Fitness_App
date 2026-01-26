@@ -36,7 +36,7 @@
 
 <main class="home">
 
-  <!-- DESTAQUE DINÂMICO -->
+  <!-- DESTAQUE -->
   <section class="destaque">
     <div class="destaque-bg"></div>
 
@@ -90,23 +90,50 @@
 
     </div>
 
-    <!-- ABDÔMEN -->
-    <a href="/treino/abdomen" class="card-treino card-longo">
-      <div class="info">
-        <strong>Abdômen</strong>
-        <span>Core completo</span>
+    <!-- ABDÔMEN (ISOLADO PARA NÃO VAZAR LINK) -->
+    <div class="card-treino card-longo">
+      <a href="/treino/abdomen" class="card-link">
+        <div class="info">
+          <strong>Abdômen</strong>
+          <span>Core completo</span>
+        </div>
+
+        <img src="{{ url_for('static', filename='imagens/silhuetas/abd.png') }}" class="thumb">
+      </a>
+    </div>
+  </section>
+
+  <!-- SUPERMAN — BODY CONTROL -->
+  <section class="superman-section">
+    <div class="superman-card">
+      <div class="superman-header">
+        <strong>SUPERMAN — BODY CONTROL</strong>
+        <span>Domine o próprio peso</span>
       </div>
 
-      <img src="{{ url_for('static', filename='imagens/silhuetas/abd.png') }}" class="thumb">
-    </a>
+      <div class="superman-grid">
+        <a href="/treino/superman_dia_1" class="superman-box">
+          <img src="{{ url_for('static', filename='imagens/silhuetas/pike.png') }}">
+          <span>Inversão<br>e Core</span>
+        </a>
+
+        <a href="/treino/superman_dia_2" class="superman-box">
+          <img src="{{ url_for('static', filename='imagens/silhuetas/hollow.png') }}">
+          <span>Barra<br>e Escápula</span>
+        </a>
+
+        <a href="/treino/superman_dia_3" class="superman-box">
+          <img src="{{ url_for('static', filename='imagens/silhuetas/deadhang.png') }}">
+          <span>Integração<br>e Controle</span>
+        </a>
+      </div>
+    </div>
   </section>
 
 </main>
 
-<!-- JS -->
 <script src="{{ url_for('static', filename='js/home.js') }}"></script>
 
-<!-- REGISTRO DO SERVICE WORKER -->
 <script>
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("/service-worker.js")

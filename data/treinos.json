@@ -89,5 +89,50 @@
       { "variacao_id": "ex_abdominal_pinguim__solo", "series": 3, "reps": "30" },
       { "variacao_id": "ex_prancha__estatica", "series": 3, "tempo": "60s" }
     ]
+  },
+  {
+    "id": "superman_dia_1",
+    "titulo": "SUPERMAN — BODY CONTROL",
+    "subtitulo": "Inversão e Core · Domine o próprio peso",
+    "grupo": "Superman",
+    "duracao": "25-40 min",
+    "imagem": "superman_body_control.png",
+    "exercicios": [
+      { "variacao_id": "ex_mobilidade_punho_circular__solo", "series": 2, "tempo": "15s" },
+      { "variacao_id": "ex_pike_hold__banco", "series": 3, "tempo": "20-30s" },
+      { "variacao_id": "ex_handstand__parede_frente", "series": 3, "tempo": "20-40s" },
+      { "variacao_id": "ex_hollow_hold__solo", "series": 3, "tempo": "20-40s" },
+      { "variacao_id": "ex_dead_bug_lento__solo", "series": 3, "reps": "10 por lado" }
+    ]
+  },
+  {
+    "id": "superman_dia_2",
+    "titulo": "SUPERMAN — BODY CONTROL",
+    "subtitulo": "Barra e Escápula · Domine o próprio peso",
+    "grupo": "Superman",
+    "duracao": "25-40 min",
+    "imagem": "superman_body_control.png",
+    "exercicios": [
+      { "variacao_id": "ex_dead_hang_ativo__barra", "series": 3, "tempo": "30-45s" },
+      { "variacao_id": "ex_scap_pullup__barra", "series": 3, "reps": "8-10" },
+      { "variacao_id": "ex_knee_raise_lento__barra", "series": 3, "reps": "8-12" },
+      { "variacao_id": "ex_prancha__estatica", "series": 3, "tempo": "40-60s" },
+      { "variacao_id": "ex_prancha_lateral__solo", "series": 2, "tempo": "30-40s" }
+    ]
+  },
+  {
+    "id": "superman_dia_3",
+    "titulo": "SUPERMAN — BODY CONTROL",
+    "subtitulo": "Integração e Controle · Domine o próprio peso",
+    "grupo": "Superman",
+    "duracao": "30-45 min",
+    "imagem": "superman_body_control.png",
+    "exercicios": [
+      { "variacao_id": "ex_wall_walk__parcial", "series": 3, "reps": "3-5" },
+      { "variacao_id": "ex_handstand__parede_costas", "series": 3, "tempo": "20-30s" },
+      { "variacao_id": "ex_handstand_negativa__parede", "series": 3, "reps": "3" },
+      { "variacao_id": "ex_hollow_rock__solo", "series": 3, "tempo": "20-30s" },
+      { "variacao_id": "ex_dead_hang__barra", "series": 2, "tempo": "45s" }
+    ]
   }
 ]

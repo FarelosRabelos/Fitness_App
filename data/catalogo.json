@@ -228,6 +228,61 @@
         }
       ]
     },
+    {
+      "id": "ex_adutora",
+      "nome": "Adutora",
+      "grupo_muscular": ["adutores"],
+      "tipo": "forca",
+      "metrica_execucao": "repeticoes",
+      "variacoes": [
+        {
+          "id": "ex_adutora__maquina",
+          "nome": "Adutora na máquina",
+          "descricao": "Feche as pernas contra a resistência da máquina.",
+          "tipo_carga": "kg",
+          "imagem": "adutora_maquina.png",
+          "video": "adutora_maquina.mp4",
+          "dica": "Controle o movimento e evite bater as pernas no final."
+        }
+      ]
+    },
+    {
+      "id": "ex_abdutora",
+      "nome": "Abdutora",
+      "grupo_muscular": ["abdutores", "gluteos"],
+      "tipo": "forca",
+      "metrica_execucao": "repeticoes",
+      "variacoes": [
+        {
+          "id": "ex_abdutora__maquina",
+          "nome": "Abdutora na máquina",
+          "descricao": "Afaste as pernas contra a resistência da máquina.",
+          "tipo_carga": "kg",
+          "imagem": "abdutora_maquina.png",
+          "video": "abdutora_maquina.mp4",
+          "dica": "Controle a abertura das pernas e evite usar impulso."
+        }
+      ]
+    },
+    {
+      "id": "ex_cadeira_extensora",
+      "nome": "Cadeira extensora",
+      "grupo_muscular": ["quadriceps"],
+      "tipo": "forca",
+      "metrica_execucao": "repeticoes",
+      "variacoes": [
+        {
+          "id": "ex_cadeira_extensora__maquina",
+          "nome": "Cadeira extensora",
+          "descricao": "Estenda os joelhos contra a resistência da máquina.",
+          "tipo_carga": "kg",
+          "imagem": "cadeira_extensora.png",
+          "video": "cadeira_extensora.mp4",
+          "dica": "Suba de forma controlada e evite trancar o joelho no topo."
+        }
+      ]
+    },
+
 
     {
       "id": "ex_puxada_frente",
@@ -394,7 +449,212 @@
           "dica": "Mantenha os ombros elevados durante o exercício."
         }
       ]
-    }
+    },
 
+    {
+      "id": "ex_dead_hang",
+      "nome": "Dead hang",
+      "grupo_muscular": ["costas", "ombros", "antebracos"],
+      "tipo": "habilidade",
+      "metrica_execucao": "tempo",
+      "variacoes": [
+        {
+          "id": "ex_dead_hang__barra",
+          "nome": "Dead hang na barra",
+          "descricao": "Fique pendurado na barra com os braços estendidos.",
+          "tipo_carga": "peso_corporal",
+          "imagem": "dead_hang_barra.png",
+          "video": "dead_hang_barra.mp4",
+          "dica": "Relaxe os ombros e respire fundo durante a execução."
+        },
+        {
+          "id": "ex_dead_hang_ativo__barra",
+          "nome": "Dead hang ativo",
+          "descricao": "Pendure-se na barra mantendo as escápulas levemente deprimidas.",
+          "tipo_carga": "peso_corporal",
+          "imagem": "dead_hang_ativo_barra.png",
+          "video": "dead_hang_ativo_barra.mp4",
+          "dica": "Ative as escápulas sem dobrar os cotovelos."
+        }
+      ]
+    },
+
+    {
+      "id": "ex_scap_pullup",
+      "nome": "Scap pull-up",
+      "grupo_muscular": ["costas", "escapulas"],
+      "tipo": "habilidade",
+      "metrica_execucao": "repeticoes",
+      "variacoes": [
+        {
+          "id": "ex_scap_pullup__barra",
+          "nome": "Scap pull-up na barra",
+          "descricao": "Eleve e abaixe o corpo apenas com o movimento das escápulas.",
+          "tipo_carga": "peso_corporal",
+          "imagem": "scap_pullup_barra.png",
+          "video": "scap_pullup_barra.mp4",
+          "dica": "Não dobre os braços; o movimento é pequeno e controlado."
+        }
+      ]
+    },
+
+    {
+      "id": "ex_knee_raise",
+      "nome": "Knee raise",
+      "grupo_muscular": ["abdomen", "core"],
+      "tipo": "core",
+      "metrica_execucao": "repeticoes",
+      "variacoes": [
+        {
+          "id": "ex_knee_raise_lento__barra",
+          "nome": "Knee raise lento na barra",
+          "descricao": "Eleve os joelhos de forma lenta e controlada enquanto fica pendurado.",
+          "tipo_carga": "peso_corporal",
+          "imagem": "knee_raise_lento_barra.png",
+          "video": "knee_raise_lento_barra.mp4",
+          "dica": "Evite balanço; suba em 2–3 segundos."
+        }
+      ]
+    },
+
+    {
+      "id": "ex_pike_hold",
+      "nome": "Pike hold",
+      "grupo_muscular": ["ombros", "core"],
+      "tipo": "habilidade",
+      "metrica_execucao": "tempo",
+      "variacoes": [
+        {
+          "id": "ex_pike_hold__banco",
+          "nome": "Pike hold com pés elevados",
+          "descricao": "Sustente a posição de pike com os pés elevados.",
+          "tipo_carga": "peso_corporal",
+          "imagem": "pike_hold_banco.png",
+          "video": "pike_hold_banco.mp4",
+          "dica": "Empurre o chão com força e mantenha o quadril alto."
+        }
+      ]
+    },
+
+    {
+      "id": "ex_handstand",
+      "nome": "Handstand",
+      "grupo_muscular": ["ombros", "core"],
+      "tipo": "habilidade",
+      "metrica_execucao": "tempo",
+      "variacoes": [
+        {
+          "id": "ex_handstand__parede_frente",
+          "nome": "Handstand assistido de frente para a parede",
+          "descricao": "Sustente a posição invertida com apoio na parede.",
+          "tipo_carga": "peso_corporal",
+          "imagem": "handstand_parede_frente.png",
+          "video": "handstand_parede_frente.mp4",
+          "dica": "Contraia glúteos e abdômen para evitar arquear a lombar."
+        },
+        {
+          "id": "ex_handstand__parede_costas",
+          "nome": "Handstand costas para a parede",
+          "descricao": "Fique invertido com as costas voltadas para a parede.",
+          "tipo_carga": "peso_corporal",
+          "imagem": "handstand_parede_costas.png",
+          "video": "handstand_parede_costas.mp4",
+          "dica": "Busque alinhamento total do corpo."
+        },
+        {
+          "id": "ex_handstand_negativa__parede",
+          "nome": "Negativa de handstand",
+          "descricao": "Desça lentamente da posição invertida com apoio na parede.",
+          "tipo_carga": "peso_corporal",
+          "imagem": "handstand_negativa_parede.png",
+          "video": "handstand_negativa_parede.mp4",
+          "dica": "Controle a descida o máximo possível."
+        }
+      ]
+    },
+
+    {
+      "id": "ex_wall_walk",
+      "nome": "Wall walk",
+      "grupo_muscular": ["ombros", "core"],
+      "tipo": "habilidade",
+      "metrica_execucao": "repeticoes",
+      "variacoes": [
+        {
+          "id": "ex_wall_walk__parcial",
+          "nome": "Wall walk parcial",
+          "descricao": "Caminhe com os pés pela parede até onde manter controle.",
+          "tipo_carga": "peso_corporal",
+          "imagem": "wall_walk_parcial.png",
+          "video": "wall_walk_parcial.mp4",
+          "dica": "Suba apenas até onde mantém controle do core."
+        }
+      ]
+    },
+
+    {
+      "id": "ex_hollow",
+      "nome": "Hollow body",
+      "grupo_muscular": ["core"],
+      "tipo": "core",
+      "metrica_execucao": "tempo",
+      "variacoes": [
+        {
+          "id": "ex_hollow_hold__solo",
+          "nome": "Hollow body hold",
+          "descricao": "Sustente o corpo em posição de hollow no chão.",
+          "tipo_carga": "peso_corporal",
+          "imagem": "hollow_hold.png",
+          "video": "hollow_hold.mp4",
+          "dica": "Se arquear a lombar, encurte o tempo."
+        },
+        {
+          "id": "ex_hollow_rock__solo",
+          "nome": "Hollow rock",
+          "descricao": "Balance o corpo mantendo a posição de hollow.",
+          "tipo_carga": "peso_corporal",
+          "imagem": "hollow_rock.png",
+          "video": "hollow_rock.mp4",
+          "dica": "Movimento curto e controlado."
+        }
+      ]
+    },
+
+    {
+      "id": "ex_dead_bug",
+      "nome": "Dead bug",
+      "grupo_muscular": ["core"],
+      "tipo": "core",
+      "metrica_execucao": "repeticoes",
+      "variacoes": [
+        {
+          "id": "ex_dead_bug_lento__solo",
+          "nome": "Dead bug lento",
+          "descricao": "Movimente braços e pernas opostas mantendo o core ativo.",
+          "tipo_carga": "peso_corporal",
+          "imagem": "dead_bug_lento.png",
+          "video": "dead_bug_lento.mp4",
+          "dica": "Controle total, sem pressa."
+        }
+      ]
+    },
+    {
+      "id": "ex_mobilidade_punho",
+      "nome": "Mobilidade de punho",
+      "grupo_muscular": ["punhos"],
+      "tipo": "mobilidade",
+      "metrica_execucao": "tempo",
+      "variacoes": [
+        {
+          "id": "ex_mobilidade_punho_circular__solo",
+          "nome": "Mobilidade circular de punho",
+          "descricao": "Passe os punhos em movimentos circulares.",
+          "tipo_carga": "nenhum",
+          "imagem": "mobilidade_punho_circular.png",
+          "video": "mobilidade_punho_circular.mp4",
+          "dica": "Realize movimentos amplos e controlados."
+        }
+      ]
+    }
   ]
 }
